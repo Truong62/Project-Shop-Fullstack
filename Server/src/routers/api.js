@@ -1,9 +1,13 @@
 const express = require("express");
 
-const {  getProduct } = require("../controller/productController")
+const { 
+    getProduct, 
+    postMultipleProduct
+ } = require("../controller/productController")
 
 const routerAPI = express.Router();
 
-routerAPI.get("/product", getProduct)
+routerAPI.get("/products", getProduct)
+routerAPI.post("/products", postMultipleProduct)
 
 module.exports = routerAPI;

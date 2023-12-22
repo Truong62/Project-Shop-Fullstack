@@ -7,10 +7,8 @@ const ProductSchema = new mongoose.Schema(
     description: String,
     stock: { type: Number, default: 0 }, 
     price: { type: Number, required: true }, 
-    size: String,
     thumbnailURL: String, 
     imgDescription :String,
-    isDeleted: { type: Boolean, default: false }
   },
   {
     timestamps: true,
