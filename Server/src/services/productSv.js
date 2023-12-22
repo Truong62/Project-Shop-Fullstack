@@ -6,9 +6,9 @@ module.exports = {
     getProductServices: async (data) => {
         const page = data.page
         const { filter, limit, population } = aqp(data)
-        console.log("population >>>",population)
-        console.log("filter >>>",filter)
-        console.log("limit >>>",limit)
+        // console.log("population >>>",population)
+        // console.log("filter >>>",filter)
+        // console.log("limit >>>",limit)
         delete filter.page
         let offset = (page - 1) * limit
 
