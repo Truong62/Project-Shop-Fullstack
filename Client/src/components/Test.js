@@ -16,7 +16,7 @@ const Test = () => {
     fetchData();
   }, []);
 
-  
+
   return (
     <div>
       <h1>Data from API:</h1>
@@ -24,7 +24,7 @@ const Test = () => {
         <div>
           {data.data.map((item, index) => (
             <div key={item._id}>
-            <img src={`http://localhost:8000/api/products/${item.thumbnailURL}`} alt="Thumbnail" />
+              <img src={`http://localhost:8000/api/products/${item.thumbnailURL}`} alt="Thumbnail" />
               <p>{item.name}</p>
               <p>{item.thumbnailURL}</p>
             </div>
