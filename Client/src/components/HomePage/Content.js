@@ -38,9 +38,9 @@ const Content = () => {
                     <div className='product grid grid-cols-4 gap-x-12 gap-y-10'>
                         {data.data.map((item, index) => (
                             <div key={item._id} className='item_product flex-1 flex flex-col '>
-                                <img src={`http://localhost:8000/api/products/${item.thumbnailURL}`} alt={item.name} className='h-[270px] w-full object-cover rounded ' />
+                                <img src={`http://localhost:8000/api/products/${item.thumbnailURL}`} alt={item.name} className='h-[270px] w-full object-cover rounded cursor-pointer' />
                                 <div className='info-product pt-5 flex-1 flex flex-col p-1'>
-                                    <h3 className='text-lg text-black mb-3'>{item.name}</h3>
+                                    <h3 className='text-base text-black mb-3 cursor-pointer'>{item.name}</h3>
                                     <span className='text-red-600 mt-auto '>{`${item.price} $`}</span>
                                 </div>
                             </div>
