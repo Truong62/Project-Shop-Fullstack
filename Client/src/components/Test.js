@@ -15,19 +15,18 @@ const Test = () => {
     };
     fetchData();
   }, []);
-  const apiKey =process.env.PATH_IMG_URL
-  console.log(apiKey)
 
+  
   return (
     <div>
       <h1>Data from API:</h1>
       {data ? (
         <div>
-          {data.data.map(item => (
+          {data.data.map((item, index) => (
             <div key={item._id}>
-              <img src={`${process.env.PATH_IMG_URL}/${item.thumbnailURL}`} alt={item.name} />
+            <img src={`http://localhost:8000/api/products/${item.thumbnailURL}`} alt="Thumbnail" />
               <p>{item.name}</p>
-              <p>{`${process.env.PATH_IMG_URL}/${item.thumbnailURL}`}</p>
+              <p>{item.thumbnailURL}</p>
             </div>
           ))}
         </div>
