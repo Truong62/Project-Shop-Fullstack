@@ -2,7 +2,6 @@ import HomePageMain from "./components/HomePage/HomePageMain";
 import { Routes, Route } from "react-router-dom";
 import ProductPageMain from "./components/ProductPage/ProductPageMain";
 
-
 function App() {
   return (
     <Routes>
