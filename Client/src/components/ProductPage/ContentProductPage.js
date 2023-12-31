@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import GetProductList from './GetProductList';
+import FormContainer from '../common/FormContailer';
+import GetProduct from '../API/GetProducts';
 
 
 
@@ -33,19 +34,19 @@ const ContentProductPage = () => {
         };
     }, []);
     return (
-        <div className='max-w-[1280px] mb-0 mt-0 ml-auto mr-auto pt-10'>
+        <FormContainer className='pt-10'>
             <div className='flex justify-between'>
                 <div className='action-page'>
                     <div className='flex'>
                         <h3 className='p-2 pl-0'>Women </h3>
                         <h3 className='p-2'> / Football </h3>
-                        <h3 className='text-gray-500 p-2'> / Jerseys </h3>
+                        <h3 className='p-2 text-gray-500'> / Jerseys </h3>
                     </div>
                     <h1 className='text-3xl font-bold '>Women's Jerseys</h1>
                 </div>
                 <div className='relative' ref={RefDrop}>
                     <div
-                        className="p-5 border border-gray-400  w-full cursor-pointer flex justify-center items-center"
+                        className="flex items-center justify-center w-full p-5 border border-gray-400 cursor-pointer"
                         onClick={() => {
                             setShow(!show);
                         }}>
@@ -55,7 +56,7 @@ const ContentProductPage = () => {
                         </svg>
                     </div>
                     {show &&
-                        (<div className="absolute border border-gray-400 bg-white shadow-lg   w-full cursor-pointer">
+                        (<div className="absolute w-full bg-white border border-gray-400 shadow-lg cursor-pointer">
                             <div className="p-5 cursor-pointer" onClick={() => ChangeArrange("Ascending")}>Ascending</div>
                             <div className="p-5 cursor-pointer" onClick={() => ChangeArrange("Decrease")}>Decrease</div>
                             <div className="p-5 cursor-pointer" onClick={() => ChangeArrange("Hot")}>Hot</div>
@@ -64,8 +65,8 @@ const ContentProductPage = () => {
                 </div>
             </div>
             <div className='grid grid-cols-3 gap-4 mt-10'>
-                <div className='sidebar col-span-1'>
-                    <div className='select-gender mb-10' >
+                <div className='col-span-1 sidebar'>
+                    <div className='mb-10 select-gender' >
                         <div
                             className="  cursor-pointer flex justify-between items-center w-[230px]"
                             onClick={() => {
@@ -77,13 +78,13 @@ const ContentProductPage = () => {
                             </svg>
                         </div>
                         {showSidebarGender &&
-                            (<div className=" cursor-pointer">
-                                <div className="cursor-pointer mt-5 text-black  flex items-center" >
-                                    <input className='h-5 w-5 checked:bg-black focus:bg-black' type="checkbox" id="Male" name="Male" value="Male" />
+                            (<div className="cursor-pointer ">
+                                <div className="flex items-center mt-5 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="Male" name="Male" value="Male" />
                                     <label className='pl-3' for="Male">Male</label>
                                 </div>
-                                <div className="cursor-pointer mt-2 text-black flex items-center" >
-                                    <input className='h-5 w-5  checked:bg-black focus:bg-black' type="checkbox" id="Female" name="Female" value="Female" />
+                                <div className="flex items-center mt-2 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="Female" name="Female" value="Female" />
                                     <label className='pl-3' for="Female">Female</label>
                                 </div>
                             </div>
@@ -92,7 +93,7 @@ const ContentProductPage = () => {
                     <svg width="230" height="2" viewBox="0 0 230 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 1H230" stroke="#F3F3F3" />
                     </svg>
-                    <div className='select-price mt-3 mb-10' >
+                    <div className='mt-3 mb-10 select-price' >
                         <div
                             className="  cursor-pointer flex justify-between items-center w-[230px]"
                             onClick={() => {
@@ -104,13 +105,13 @@ const ContentProductPage = () => {
                             </svg>
                         </div>
                         {showSidebarPrice &&
-                            (<div className=" cursor-pointer">
-                                <div className="cursor-pointer mt-5 text-black  flex items-center" >
-                                    <input className='h-5 w-5 checked:bg-black focus:bg-black' type="checkbox" id="Below $50" name="Below $50" value="Below $50" />
+                            (<div className="cursor-pointer ">
+                                <div className="flex items-center mt-5 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="Below $50" name="Below $50" value="Below $50" />
                                     <label className='pl-3' for="Below $50">Below $50</label>
                                 </div>
-                                <div className="cursor-pointer mt-2 text-black flex items-center" >
-                                    <input className='h-5 w-5  checked:bg-black focus:bg-black' type="checkbox" id="Above $50" name="Above $50" value="Above $50" />
+                                <div className="flex items-center mt-2 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="Above $50" name="Above $50" value="Above $50" />
                                     <label className='pl-3' for="Above $50">Above $50</label>
                                 </div>
                             </div>
@@ -119,7 +120,7 @@ const ContentProductPage = () => {
                     <svg width="230" height="2" viewBox="0 0 230 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 1H230" stroke="#F3F3F3" />
                     </svg>
-                    <div className='select-size mt-3 mb-10' >
+                    <div className='mt-3 mb-10 select-size' >
                         <div
                             className="  cursor-pointer flex justify-between items-center w-[230px]"
                             onClick={() => {
@@ -131,21 +132,21 @@ const ContentProductPage = () => {
                             </svg>
                         </div>
                         {showSidebarSize &&
-                            (<div className=" cursor-pointer">
-                                <div className="cursor-pointer mt-5 text-black  flex items-center" >
-                                    <input className='h-5 w-5 checked:bg-black focus:bg-black' type="checkbox" id="XS (UK 4-6)" name="XS (UK 4-6)" value="XS (UK 4-6)" />
+                            (<div className="cursor-pointer ">
+                                <div className="flex items-center mt-5 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="XS (UK 4-6)" name="XS (UK 4-6)" value="XS (UK 4-6)" />
                                     <label className='pl-3' for="XS (UK 4-6)">XS (UK 4-6)</label>
                                 </div>
-                                <div className="cursor-pointer mt-2 text-black flex items-center" >
-                                    <input className='h-5 w-5  checked:bg-black focus:bg-black' type="checkbox" id="S (UK 8-10)" name="S (UK 8-10)" value="S (UK 8-10)" />
+                                <div className="flex items-center mt-2 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="S (UK 8-10)" name="S (UK 8-10)" value="S (UK 8-10)" />
                                     <label className='pl-3' for="S (UK 8-10)">S (UK 8-10)</label>
                                 </div>
-                                <div className="cursor-pointer mt-2 text-black flex items-center" >
-                                    <input className='h-5 w-5  checked:bg-black focus:bg-black' type="checkbox" id="M (UK 12-14)" name="M (UK 12-14)" value="M (UK 12-14)" />
+                                <div className="flex items-center mt-2 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="M (UK 12-14)" name="M (UK 12-14)" value="M (UK 12-14)" />
                                     <label className='pl-3' for="M (UK 12-14)">M (UK 12-14)</label>
                                 </div>
-                                <div className="cursor-pointer mt-2 text-black flex items-center" >
-                                    <input className='h-5 w-5  checked:bg-black focus:bg-black' type="checkbox" id="L (UK 12-14)" name="L (UK 12-14)" value="L (UK 12-14)" />
+                                <div className="flex items-center mt-2 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="L (UK 12-14)" name="L (UK 12-14)" value="L (UK 12-14)" />
                                     <label className='pl-3' for="L (UK 12-14)">L (UK 12-14)</label>
                                 </div>
                             </div>
@@ -155,7 +156,7 @@ const ContentProductPage = () => {
                     <svg width="230" height="2" viewBox="0 0 230 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 1H230" stroke="#F3F3F3" />
                     </svg>
-                    <div className='select-football mt-3 mb-10' >
+                    <div className='mt-3 mb-10 select-football' >
                         <div
                             className="  cursor-pointer flex justify-between items-center w-[230px]"
                             onClick={() => {
@@ -167,21 +168,21 @@ const ContentProductPage = () => {
                             </svg>
                         </div>
                         {showSidebarFootball &&
-                            (<div className=" cursor-pointer">
-                                <div className="cursor-pointer mt-5 text-black  flex items-center" >
-                                    <input className='h-5 w-5 checked:bg-black focus:bg-black' type="checkbox" id="FC Barcelona" name="FC Barcelona" value="FC Barcelona" />
+                            (<div className="cursor-pointer ">
+                                <div className="flex items-center mt-5 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="FC Barcelona" name="FC Barcelona" value="FC Barcelona" />
                                     <label className='pl-3' for="FC Barcelona">FC Barcelona</label>
                                 </div>
-                                <div className="cursor-pointer mt-2 text-black flex items-center" >
-                                    <input className='h-5 w-5  checked:bg-black focus:bg-black' type="checkbox" id="AS Roma" name="AS Roma" value="AS Roma" />
+                                <div className="flex items-center mt-2 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="AS Roma" name="AS Roma" value="AS Roma" />
                                     <label className='pl-3' for="AS Roma">AS Roma</label>
                                 </div>
-                                <div className="cursor-pointer mt-2 text-black flex items-center" >
-                                    <input className='h-5 w-5  checked:bg-black focus:bg-black' type="checkbox" id="Athletico Madrid" name="Athletico Madrid" value="Athletico Madrid" />
+                                <div className="flex items-center mt-2 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="Athletico Madrid" name="Athletico Madrid" value="Athletico Madrid" />
                                     <label className='pl-3' for="Athletico Madrid">Athletico Madrid</label>
                                 </div>
-                                <div className="cursor-pointer mt-2 text-black flex items-center" >
-                                    <input className='h-5 w-5  checked:bg-black focus:bg-black' type="checkbox" id="Paris Saint-Germain" name="Paris Saint-Germain" value="Paris Saint-Germain" />
+                                <div className="flex items-center mt-2 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="Paris Saint-Germain" name="Paris Saint-Germain" value="Paris Saint-Germain" />
                                     <label className='pl-3' for="Paris Saint-Germain">Paris Saint-Germain</label>
                                 </div>
                             </div>
@@ -190,7 +191,7 @@ const ContentProductPage = () => {
                     <svg width="230" height="2" viewBox="0 0 230 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 1H230" stroke="#F3F3F3" />
                     </svg>
-                    <div className='select-type mt-3 mb-10' >
+                    <div className='mt-3 mb-10 select-type' >
                         <div
                             className="  cursor-pointer flex justify-between items-center w-[230px]"
                             onClick={() => {
@@ -202,17 +203,17 @@ const ContentProductPage = () => {
                             </svg>
                         </div>
                         {showSidebarType &&
-                            (<div className=" cursor-pointer">
-                                <div className="cursor-pointer mt-5 text-black  flex items-center" >
-                                    <input className='h-5 w-5 checked:bg-black focus:bg-black' type="checkbox" id="Home" name="Home" value="Home" />
+                            (<div className="cursor-pointer ">
+                                <div className="flex items-center mt-5 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="Home" name="Home" value="Home" />
                                     <label className='pl-3' for="Home">Home</label>
                                 </div>
-                                <div className="cursor-pointer mt-2 text-black flex items-center" >
-                                    <input className='h-5 w-5  checked:bg-black focus:bg-black' type="checkbox" id="Away" name="Away" value="Away" />
+                                <div className="flex items-center mt-2 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="Away" name="Away" value="Away" />
                                     <label className='pl-3' for="Away">Away</label>
                                 </div>
-                                <div className="cursor-pointer mt-2 text-black flex items-center" >
-                                    <input className='h-5 w-5  checked:bg-black focus:bg-black' type="checkbox" id="Custom" name="Custom" value="Custom" />
+                                <div className="flex items-center mt-2 text-black cursor-pointer" >
+                                    <input className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id="Custom" name="Custom" value="Custom" />
                                     <label className='pl-3' for="Custom">Custom</label>
                                 </div>
                             </div>
@@ -220,11 +221,12 @@ const ContentProductPage = () => {
                     </div>
                 </div>
                 <div className='col-span-2'>
-                    <GetProductList></GetProductList>
+                    <GetProduct className='grid-cols-3 gap-x-5 gap-y-10'></GetProduct>
 
                 </div>
             </div>
-        </div>
+        </FormContainer>
+      
     );
 };
 
