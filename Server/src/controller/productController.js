@@ -5,10 +5,28 @@ const {
     postSingleImageServices,
     postMultipleImageServices,
     createProductService,
+    getProductByIdServices
 } = require("../services/productSv")
 
 
 module.exports = {
+    getProductById: async (req, res) =>{
+        let id = req.params.id
+       
+        try {
+            let result = await getProductByIdServices(id);
+            return res.status(200).json({
+                errorCode: 0,
+                data: result,
+            });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({
+                errorCode: 1,
+                message: "Error retrieving product",
+            });
+        }
+    },
     getProduct: async (req, res) => {
         let result = await getProductServices(req.query)
         return res.status(200).json({

@@ -113,5 +113,14 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
+    },
+    getProductByIdServices: async (data) =>{
+        try {
+            const product = await Product.findById(data);
+            return product;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
 }
