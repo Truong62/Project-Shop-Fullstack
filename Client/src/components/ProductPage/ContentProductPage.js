@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import FormContainer from '../common/FormContailer';
 import GetProduct from '../API/GetProducts';
+import Select from '../common/Select';
 
 
 
@@ -66,7 +67,7 @@ const ContentProductPage = () => {
             </div>
             <div className='grid grid-cols-3 gap-4 mt-10'>
                 <div className='col-span-1 sidebar'>
-                    <div className='mb-10 select-gender' >
+                    <Select className='select-gender' >
                         <div
                             className="  cursor-pointer flex justify-between items-center w-[230px]"
                             onClick={() => {
@@ -89,11 +90,11 @@ const ContentProductPage = () => {
                                 </div>
                             </div>
                             )}
-                    </div>
+                    </Select>
                     <svg width="230" height="2" viewBox="0 0 230 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 1H230" stroke="#F3F3F3" />
                     </svg>
-                    <div className='mt-3 mb-10 select-price' >
+                    <Select className='select-price' >
                         <div
                             className="  cursor-pointer flex justify-between items-center w-[230px]"
                             onClick={() => {
@@ -116,11 +117,11 @@ const ContentProductPage = () => {
                                 </div>
                             </div>
                             )}
-                    </div>
+                    </Select>
                     <svg width="230" height="2" viewBox="0 0 230 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 1H230" stroke="#F3F3F3" />
                     </svg>
-                    <div className='mt-3 mb-10 select-size' >
+                    <Select className='select-size' >
                         <div
                             className="  cursor-pointer flex justify-between items-center w-[230px]"
                             onClick={() => {
@@ -151,12 +152,12 @@ const ContentProductPage = () => {
                                 </div>
                             </div>
                             )}
-                    </div>
+                    </Select>
 
                     <svg width="230" height="2" viewBox="0 0 230 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 1H230" stroke="#F3F3F3" />
                     </svg>
-                    <div className='mt-3 mb-10 select-football' >
+                    <Select className='select-football' >
                         <div
                             className="  cursor-pointer flex justify-between items-center w-[230px]"
                             onClick={() => {
@@ -187,11 +188,11 @@ const ContentProductPage = () => {
                                 </div>
                             </div>
                             )}
-                    </div>
+                    </Select>
                     <svg width="230" height="2" viewBox="0 0 230 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 1H230" stroke="#F3F3F3" />
                     </svg>
-                    <div className='mt-3 mb-10 select-type' >
+                    <Select className='select-type' >
                         <div
                             className="  cursor-pointer flex justify-between items-center w-[230px]"
                             onClick={() => {
@@ -218,7 +219,7 @@ const ContentProductPage = () => {
                                 </div>
                             </div>
                             )}
-                    </div>
+                    </Select>
                 </div>
                 <div className='col-span-2'>
                     <GetProduct className='grid-cols-3 gap-x-5 gap-y-10'></GetProduct>
