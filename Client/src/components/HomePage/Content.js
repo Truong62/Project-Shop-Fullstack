@@ -4,6 +4,7 @@ import release2 from "./img/Screenshot2.png"
 import { Link } from "react-router-dom"
 import FormContainer from '../common/FormContailer';
 import GetProduct from '../API/GetProducts';
+import Seemore from '../common/Seemore';
 
 const Content = () => {
     return (
@@ -22,15 +23,10 @@ const Content = () => {
             </div>
             <div className="mt-16 mb-10 list-product">
                 <h1 className='mb-10 text-3xl font-bold'>Selling Fast</h1>
-              <GetProduct className='grid-cols-4 gap-x-12 gap-y-10'></GetProduct>
+                <GetProduct className='grid-cols-4 gap-x-12 gap-y-10'></GetProduct>
             </div>
             <FormContainer>
-                <div className='flex items-center justify-center p-3 border-solid border-2 border-[#DEDEDE] font-medium rounded-lg cursor-pointer'>
-                    <Link to={"/products-new-in"} className='mr-3 text-base'>Sell All Products</Link>
-                    <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.510466 10.1259C0.240103 10.3963 0.240103 10.8346 0.510466 11.105C0.780829 11.3754 1.21917 11.3754 1.48954 11.105L6.10492 6.48961C6.37528 6.21925 6.37528 5.7809 6.10492 5.51054L1.48954 0.895155C1.21917 0.624792 0.780829 0.624792 0.510466 0.895155C0.240103 1.16552 0.240103 1.60386 0.510466 1.87423L4.63631 6.00008L0.510466 10.1259Z" fill="black" />
-                    </svg>
-                </div>
+                <Seemore to="/products-new-in" className='flex items-center justify-center p-3 border-solid border-2 border-[#DEDEDE] font-medium rounded-lg cursor-pointer' >Sell All Products</Seemore>
             </FormContainer>
             <div className="mt-16 mb-32 new-release">
                 <h1 className='mt-10 mb-10 text-3xl font-bold'>New Release</h1>

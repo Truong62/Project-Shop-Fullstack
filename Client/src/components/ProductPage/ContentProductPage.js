@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import FormContainer from '../common/FormContailer';
 import GetProduct from '../API/GetProducts';
 import Select from '../common/Select';
+import Seemore from '../common/Seemore';
 
 
 
@@ -223,11 +224,11 @@ const ContentProductPage = () => {
                 </div>
                 <div className='col-span-2'>
                     <GetProduct className='grid-cols-3 gap-x-5 gap-y-10'></GetProduct>
-
+                    <Seemore to='/products-new-in' className='flex items-center justify-center p-3 border-solid border-2 border-[#DEDEDE] font-medium rounded-lg cursor-pointer my-10' > Load More Products</Seemore>
                 </div>
             </div>
         </FormContainer>
-      
+
     );
 };
 

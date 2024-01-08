@@ -1,6 +1,7 @@
 import HomePageMain from "./components/HomePage/HomePageMain";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, } from "react-router-dom";
 import ProductPageMain from "./components/ProductPage/ProductPageMain";
+import ProductDetailsPageMain from "./components/ProductDetailsPage/ProductDetailsPageMain";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/products-lifestyle" element={<ProductPageMain></ProductPageMain>}></Route>
       <Route path="/products-american-football" element={<ProductPageMain></ProductPageMain>}></Route>
       <Route path="/products-sales" element={<ProductPageMain></ProductPageMain>}></Route>
+      <Route path="/products-details/:id" element={<ProductDetailsPageMain></ProductDetailsPageMain>}></Route>
       <Route path="*" element={<h1>page does not exist</h1>}></Route>
     </Routes>
   );
