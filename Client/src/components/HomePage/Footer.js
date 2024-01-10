@@ -1,9 +1,9 @@
 import React from 'react';
 import FormContainer from '../common/FormContailer';
 
-const Footer = () => {
+const Footer = ({className}) => {
     return (
-        <div>
+        <div className={`${className}`}>
             <FormContainer className="bg-white">
                 <div className='grid grid-cols-4 gap-4 footer-content'>
                     <div className='custormer'>
