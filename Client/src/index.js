@@ -20,7 +20,7 @@ root.render(
       </React.StrictMode>
     </PersistGate>
   </Provider>,
-  document.getElementById('root')
+
 );
 
 reportWebVitals();

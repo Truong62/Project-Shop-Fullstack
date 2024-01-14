@@ -9,14 +9,9 @@ import { addProductLike } from '../../redux/Slice/likeSlice';
 const GetProductById = ({ children, className = "" }) => {
 
     const dispatch = useDispatch()
-    
+
     const [data, setData] = useState({});
     const { id } = useParams();
-    const SizeArr = [
-        { id: 1, name: "36" },
-        { id: 2, name: "37" },
-        { id: 3, name: "39" }
-    ];
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,20 +20,19 @@ const GetProductById = ({ children, className = "" }) => {
                 setData(response.data);
 
             } catch (error) {
-                console.error('Lỗi khi lấy dữ liệu: ', error.response);
+                console.error('Error: ', error.response);
             }
         };
         fetchData();
     }, [id]);
-
     return (
         <Fragment>
             {data && data.data ? (
                 <div className={`flex justify-center product h-[600px] ${className}`}>
                     <div className='block w-1/12 mx-2 item_product drop-shadow-lg'>
-                        <div>
-                            <img src={`http://localhost:8000/api/products/image/${data.data.imgDescription}`} alt="" />
-                        </div>
+                        {data.data.imgDescription.map((item, index) => (
+                            <img key={index} src={`http://localhost:8000/api/products/image/${item}`} className='mb-5 cursor-pointer' alt={`${index}`} />
+                        ))}
                     </div>
                     <div className='flex flex-col flex-1 w-7/12 mx-3'>
                         <img src={`http://localhost:8000/api/products/image/${data.data.thumbnailURL}`} alt={data.data.name} className='h-[600px] w-auto drop-shadow-lg object-cover rounded' />
@@ -46,7 +40,10 @@ const GetProductById = ({ children, className = "" }) => {
                     <div className='w-4/12 mx-2'>
                         <div className='info'>
                             <h3 className='mb-3 text-2xl font-normal text-black cursor-pointer'>{data.data.name}</h3>
-                            <p className='my-5 price text-[#B02B2B] font-medium text-3xl'> {data.data.price}</p>
+                            <div className='flex my-5'>
+                                <p className='price text-[#B02B2B] font-medium text-3xl'> {data.data.price}</p>
+                                <p className='ml-4 flex items-center line-through text-[#868686] font-normal text-xl mt-1'> {data.data.discount}</p>
+                            </div>
                         </div>
                         <div className='flex flex-col justify-between flex-1 my-5 selec-size'>
                             <div className='flex justify-between '>
@@ -56,12 +53,12 @@ const GetProductById = ({ children, className = "" }) => {
                                 </Link>
                             </div>
                             <Dropdown classNameItem="absolute bg-slate-50 px-5 pb-5 w-[433px] border border-[#DEDEDE] shadow-lg"
-                                className="w-full border border-[#DEDEDE] p-4" data={SizeArr} table={"Please Select"} status={false}></Dropdown>
+                                className="w-full border border-[#DEDEDE] p-4" data={data.data.size} table={"Please Select"} status={false}></Dropdown>
                             <div className='flex justify-between'>
-                                <button onClick={()=>(dispatch(addProduct(data.data)))} className='flex items-center justify-center w-10/12 bg-black'>
-                                    <h2  className='text-center text-[#fff] font-medium text-base'>Add To Bag</h2>
+                                <button onClick={() => (dispatch(addProduct(data.data)))} className='flex items-center justify-center w-10/12 bg-black'>
+                                    <h2 className='text-center text-[#fff] font-medium text-base'>Add To Bag</h2>
                                 </button>
-                                <button onClick={()=>(dispatch(addProductLike(data.data)))} className=''>
+                                <button onClick={() => (dispatch(addProductLike(data.data)))} className=''>
                                     <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="0.5" y="0.5" width="49" height="49" fill="white" stroke="#DEDEDE" />
                                         <mask id="path-2-inside-1_0_465" fill="white">

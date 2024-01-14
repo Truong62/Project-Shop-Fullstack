@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link,  } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 
-const GetProduct = ({ children, className = "", page, limit  }) => {
+const GetProduct = ({ children, className = "", page, limit }) => {
     const [data, setData] = useState(null);
-    
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -31,7 +31,10 @@ const GetProduct = ({ children, className = "", page, limit  }) => {
                                 <Link to={`/products-details/${item._id}`} className='flex flex-col flex-1 item_product '>
                                     <h3 className='mb-3 text-base font-normal text-black cursor-pointer'>{item.name}</h3>
                                 </Link>
-                                <span className='mt-auto font-medium text-red-600 '>{`${item.price} $`}</span>
+                                <div className='flex mt-auto'>
+                                    <span className='mt-auto font-medium text-red-600 '>{`${item.price} $`}</span>
+                                    <span className='justify-center flex items-center ml-4 mt-1 line-through font-medium text-sm text-[#868686] '>{`${item.discount} $`}</span>
+                                </div>
                             </div>
                         </div>
                     ))}

@@ -9,31 +9,11 @@ import Dropdown from '../common/Dropdown';
 
 
 const ContentProductPage = () => {
-    const GenderArr = [
-        { id: 1, name: "Male" },
-        { id: 2, name: "Female" },
-    ];
-    const PriceRangeArr = [
-        { id: 1, name: "Below $50" },
-        { id: 2, name: "Above $50" },
-    ];
-    const SizeArr = [
-        { id: 1, name: "XS (UK 4-6)" },
-        { id: 2, name: "S (UK 8-10)" },
-        { id: 3, name: "M (UK 12-14)" },
-        { id: 4, name: "L (UK 12-14)" },
-    ];
-    const JerseyArr = [
-        { id: 1, name: "Home" },
-        { id: 2, name: "Away" },
-        { id: 3, name: "Custom" },
-    ];
-    const FootballArr = [
-        { id: 1, name: "FC Barcelona" },
-        { id: 2, name: "AS Roma" },
-        { id: 3, name: "Athletico Madrid" },
-        { id: 4, name: "Paris Saint-Germain" },
-    ];
+    const GenderArr = ["Male" ,"Female" ,];
+    const PriceRangeArr = ["Below $50" ,"Above $50" ,];
+    const SizeArr = ["XS (UK 4-6)","S (UK 8-10)","M (UK 12-14)","L (UK 12-14)",];
+    const JerseyArr = ["Home","Away","Custom",];
+    const FootballArr = ["FC Barcelona","AS Roma","Athletico Madrid","Paris Saint-Germain",];
 
     const [show, setShow] = useState(false);
     const [arrange, setArrange] = useState("Ascending");

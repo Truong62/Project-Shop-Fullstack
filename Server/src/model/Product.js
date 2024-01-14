@@ -5,10 +5,12 @@ const ProductSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     description: String,
-    stock: { type: Number, default: 0 }, 
-    price: { type: String, required: true }, 
-    thumbnailURL: String, 
-    imgDescription :String,
+    stock: { type: Number, default: 0 },
+    price: { type: String, required: true },
+    thumbnailURL: String,
+    imgDescription: { type: Array, default: [] },
+    size: { type: Array, default: [] },
+    discount: String,
   },
   {
     timestamps: true,
