@@ -2,14 +2,13 @@ import { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import Dropdown from "../common/Dropdown"
-import { useDispatch, useSelector } from 'react-redux';
-import { addProduct, selectCart } from '../../redux/Slice/cartSlice';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../../redux/Slice/cartSlice';
+import { addProductLike } from '../../redux/Slice/likeSlice';
 
 const GetProductById = ({ children, className = "" }) => {
 
-    const dispatch = useDispatch();
-    const productCart = useSelector(selectCart);
-    console.log(productCart)
+    const dispatch = useDispatch()
     
     const [data, setData] = useState({});
     const { id } = useParams();
@@ -62,7 +61,7 @@ const GetProductById = ({ children, className = "" }) => {
                                 <button onClick={()=>(dispatch(addProduct(data.data)))} className='flex items-center justify-center w-10/12 bg-black'>
                                     <h2  className='text-center text-[#fff] font-medium text-base'>Add To Bag</h2>
                                 </button>
-                                <button className=''>
+                                <button onClick={()=>(dispatch(addProductLike(data.data)))} className=''>
                                     <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="0.5" y="0.5" width="49" height="49" fill="white" stroke="#DEDEDE" />
                                         <mask id="path-2-inside-1_0_465" fill="white">
