@@ -5,6 +5,7 @@ import Header from '../HomePage/Header';
 import Breadcrumb from '../common/Breadcrumb';
 import GetProduct from '../API/GetProducts';
 import Footer from '../HomePage/Footer';
+import Subheader from '../HomePage/Subheader';
 
 const ProductDetailsPageMain = () => {
     useEffect(() => {
@@ -21,6 +22,7 @@ const ProductDetailsPageMain = () => {
         <Fragment>
             <div ref={topRef}></div>
             <Header></Header>
+            <Subheader></Subheader>
             <FormContainer>
                 <Breadcrumb className='py-6'></Breadcrumb>
                 <GetProductById ></GetProductById>

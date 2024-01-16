@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Header from '../HomePage/Header';
 import ContentProductPage from './ContentProductPage';
 import Footer from '../HomePage/Footer';
+import Subheader from '../HomePage/Subheader';
 
 const ProductPageMain = () => {
     useEffect(() => {
@@ -10,6 +11,7 @@ const ProductPageMain = () => {
     return (
         <div>
             <Header></Header>
+            <Subheader></Subheader>
             <ContentProductPage></ContentProductPage>
             <Footer></Footer>
         </div>

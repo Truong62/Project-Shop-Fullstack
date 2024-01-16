@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import Header from './Header';
 import Content from './Content';
 import Footer from './Footer';
+import Subheader from './Subheader';
 import FormContainer from '../common/FormContailer';
 
 
@@ -12,6 +13,7 @@ const HomePageMain = () => {
     return (
         <Fragment>
             <Header></Header>
+            <Subheader></Subheader>
             <FormContainer>
                 <Content></Content>
             </FormContainer>

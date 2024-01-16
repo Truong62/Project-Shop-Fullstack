@@ -1,5 +1,4 @@
 import React from 'react';
-import Subheader from './Subheader';
 import { Link } from "react-router-dom"
 import { useSelector } from 'react-redux';
 import { selectCart } from '../../redux/Slice/cartSlice';
@@ -13,7 +12,7 @@ const Header = () => {
     const numberProductLike = (productLike.likeProductItems.length > 0) ? productLike.likeProductItems.length : 0
 
     return (
-        <header>
+        <header className="sticky top-0 z-50">
             <div className="flex items-center justify-between bg-black pl-28 pr-28">
                 <div className="flex items-center justify-center">
                     <Link to={"/"} className='p-3'>
@@ -33,14 +32,14 @@ const Header = () => {
                     />
                 </div>
                 <div className='flex items-center justify-center'>
-                    <div className="relative p-3 cursor-pointer cart">
+                    <Link to={"/cart"} className="relative p-3 cursor-pointer cart">
                         <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M8.06324 1.5C6.82049 1.5 5.81324 2.505 5.81324 3.75H10.3132C10.3132 2.505 9.30599 1.5 8.06324 1.5ZM10.3132 5.25V6C10.3132 6.4125 10.6492 6.75 11.0632 6.75C11.4772 6.75 11.8132 6.4125 11.8132 6V5.25H12.7297C13.11 5.25 13.4295 5.535 13.4745 5.91L14.6212 15.66C14.6737 16.11 14.3257 16.5 13.8765 16.5H2.24999C1.80074 16.5 1.45274 16.11 1.50524 15.66L2.65199 5.91C2.69699 5.535 3.01649 5.25 3.39674 5.25H4.31324V6C4.31324 6.4125 4.64924 6.75 5.06324 6.75C5.47724 6.75 5.81324 6.4125 5.81324 6V5.25H10.3132ZM4.31324 3.75H3.39674C2.25599 3.75 1.29599 4.605 1.16249 5.7375L0.0157376 15.4875C-0.141762 16.8225 0.902988 18 2.24999 18H13.8765C15.2235 18 16.2682 16.8225 16.1107 15.4875L14.964 5.7375C14.8305 4.605 13.8705 3.75 12.7297 3.75H11.8132C11.8132 1.68 10.134 0 8.06324 0C5.99174 0 4.31324 1.68 4.31324 3.75Z" fill="white" />
                         </svg>
                         <div className='absolute top-0 flex items-center justify-center w-5 h-5 p-1 bg-yellow-400 rounded-full right-1'>
                             <p className='text-sm font-medium text-white'>{`${numberProductCart}`}</p>
                         </div>
-                    </div>
+                    </Link>
                     <div className="relative p-3 cursor-pointer like-icon">
                         <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="path-1-inside-1_0_87" fill="white">
@@ -61,8 +60,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            <Subheader></Subheader>
-        </header >
+        </header>
     );
 };
 

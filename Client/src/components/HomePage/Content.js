@@ -10,10 +10,10 @@ const Content = () => {
     return (
         <div>
             <div className='relative mt-10 banner '>
-                <div className="relative w-full h-full rounded-lg">
+                <div className="relative w-full h-full rounded-lg mix-blend-overlay -z-10 bg-gradient-to-t to-[#1a1919] from-[#1a1919] ">
                     <img src={banner}
                         alt=""
-                        className="object-cover w-full h-full rounded-lg "
+                        className="object-cover w-full h-full rounded-lg opacity-85"
                     />
                     <div className="absolute left-5 bottom-5 text-white m-10 w-[350px] ">
                         <h3 className='mb-6 text-2xl font-medium text-shadow'>Sweat-Wicking Performance</h3>
