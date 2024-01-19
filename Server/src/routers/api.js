@@ -5,7 +5,7 @@ const {
     postMultipleProduct,
     getImageProduct,
     getProductById,
-
+    postCreateOrders,
 } = require("../controller/productController")
 
 const routerAPI = express.Router();
@@ -15,5 +15,7 @@ routerAPI.post("/products", postMultipleProduct)
 
 routerAPI.get("/products/image/:imageName", getImageProduct);
 routerAPI.get("/products/id/:id", getProductById)
+
+routerAPI.post("/order", postCreateOrders)
 
 module.exports = routerAPI;

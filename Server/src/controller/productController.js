@@ -5,14 +5,16 @@ const {
     postSingleImageServices,
     postMultipleImageServices,
     createProductService,
-    getProductByIdServices
+    getProductByIdServices,
+    createCustomerService,
+    createOrderService,
 } = require("../services/productSv")
 
 
 module.exports = {
-    getProductById: async (req, res) =>{
+    getProductById: async (req, res) => {
         let id = req.params.id
-       
+
         try {
             let result = await getProductByIdServices(id);
             return res.status(200).json({
@@ -91,4 +93,13 @@ module.exports = {
             data: products
         })
     },
+    postCreateOrders: async (req, res) => {
+        let {   status ,product_orders, nameCustome, address, email, phone } = req.body
+        let Order = {   status ,product_orders, nameCustome, address, email, phone }
+        let OrderData = await createOrderService(Order)
+        return res.status(200).json({
+            EC: 0,
+            data: OrderData
+        })
+    }
 }

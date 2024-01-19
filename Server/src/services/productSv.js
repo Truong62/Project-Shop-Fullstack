@@ -1,8 +1,68 @@
 const aqp = require("api-query-params");
 const Product = require("../model/Product")
+const Customer = require("../model/customers")
+const Orders = require("../model/Orders")
 const path = require("path")
 
 module.exports = {
+    createCustomerService: async (data) => {
+        try {
+            if (Object.keys(data).length === 0 && data.constructor === Object) {
+                return {
+                    status: "failed",
+                }
+            } else {
+                let result = await Customer.create({
+                    name: data.nameCustome,
+                    address: data.address,
+                    email: data.email,
+                    phone: data.phone,
+                })
+                return result
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    },
+    createOrderService: async (data) => {
+        let result
+        try {
+            if (Object.keys(data).length === 0 && data.constructor === Object) {
+                return {
+                    status: "failed",
+                }
+            }
+            const phoneCustome = await Customer.find({ phone: data.phone })
+            // return phoneCustome
+            if (phoneCustome.length > 0) {
+                result = await Orders.create({
+                    customer_id: phoneCustome[0]._id,
+                    order_date: new Date(),
+                    product_orders: data.product_orders.map(productOrder => ({
+                        product_id: productOrder.product_id,
+                        quantity: productOrder.quantity,
+                        size: productOrder.size,
+                    })),
+                    status: data.status
+                })
+            } else {
+                let customers = await module.exports.createCustomerService(data)
+                result = await Orders.create({
+                    customer_id: customers._id,
+                    order_date: new Date(),
+                    product_orders: data.product_orders.map(productOrder => ({
+                        product_id: productOrder.product_id,
+                        quantity: productOrder.quantity,
+                        size: productOrder.size,
+                    })),
+                    status: data.status
+                })
+            }
+            return result
+        } catch (error) {
+            console.log(error)
+        }
+    },
     getProductServices: async (data) => {
         const page = data.page
         const { filter, limit, population } = aqp(data)
@@ -18,7 +78,7 @@ module.exports = {
             .skip(offset)
             .limit(limit)
             .exec();
-            
+
         return result
     },
     postSingleImageServices: async (data) => {
@@ -94,12 +154,10 @@ module.exports = {
                     status: "failed",
                 }
             } else {
-
                 let imgDescription = data.imgDescription;
                 if (Array.isArray(imgDescription)) {
                     imgDescription = imgDescription.join(',');
                 }
-
                 let result = await Product.create({
                     name: data.name,
                     description: data.description,
@@ -114,7 +172,7 @@ module.exports = {
             console.log(error)
         }
     },
-    getProductByIdServices: async (data) =>{
+    getProductByIdServices: async (data) => {
         try {
             const product = await Product.findById(data);
             return product;
