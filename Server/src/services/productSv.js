@@ -2,9 +2,34 @@ const aqp = require("api-query-params");
 const Product = require("../model/Product")
 const Customer = require("../model/customers")
 const Orders = require("../model/Orders")
+const User = require("../model/User")
 const path = require("path")
+const bcrypt = require('bcrypt');
 
 module.exports = {
+    createUserService: async (data) => {
+        try {
+            const accountUser = await User.find({ account: data.account });
+            if (accountUser.length > 0) {
+                return res.status(400).json({ message: 'account exists' });
+            }
+
+            const hashedPassword = await bcrypt.hash(data.password, 10);
+
+            let result = await User.create({
+                name: data.name,
+                password: hashedPassword,
+                account: data.account,
+                address: data.address,
+                email: data.email,
+                phone: data.phone,
+            })
+            return result
+
+        } catch (error) {
+            console.log(error)
+        }
+    },
     createCustomerService: async (data) => {
         try {
             if (Object.keys(data).length === 0 && data.constructor === Object) {
@@ -22,6 +47,7 @@ module.exports = {
             }
         } catch (error) {
             console.log(error)
+            return res.status(500).json({ message: 'Internal Server Error' });
         }
     },
     createOrderService: async (data) => {

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container list-order">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Customer</th>
+            <th scope="col">Time</th>
+            <th scope="col">Product</th>
+            <th scope="col">Status</th>
+            <th scope="col">Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% function formatDateTime(dateTime) { const formattedDateTime = new
+          Date(dateTime).toLocaleString('en-US', { year: 'numeric', month:
+          'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second:
+          'numeric' }); return formattedDateTime; } %> <%
+          order.forEach(function(order) { %>
+          <tr>
+            <th class="col"><%= order.customer_id %></th>
+            <td><%= formatDateTime(order.order_date) %></td>
+            <td>
+                <% order.product_orders.forEach(function(product, index) { %>
+                    <p class="d-flex">
+                      <%= product.product_id %> 
+                      <p class="text-in-table">quantity :</p> <%= product.quantity %> 
+                      <p class="text-in-table">size :</p> <%= product.size %>
+                      <% if (index < order.product_orders.length - 1) { %>
+                        <hr>
+                      <% } %>
+                    </p>
+                  <% }); %>
+            </td>
+            <td> <%= order.status %></td>
+            <td> <%= order.address %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    
+  </body>
+</html>

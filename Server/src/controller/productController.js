@@ -8,10 +8,14 @@ const {
     getProductByIdServices,
     createCustomerService,
     createOrderService,
+    createUserService
 } = require("../services/productSv")
 
 
 module.exports = {
+    loginAccount: async (req,res) => {
+        return res.send("hellle")
+    },
     getProductById: async (req, res) => {
         let id = req.params.id
 
@@ -94,12 +98,21 @@ module.exports = {
         })
     },
     postCreateOrders: async (req, res) => {
-        let {   status ,product_orders, nameCustome, address, email, phone } = req.body
-        let Order = {   status ,product_orders, nameCustome, address, email, phone }
+        let { status, product_orders, nameCustome, address, email, phone } = req.body
+        let Order = { status, product_orders, nameCustome, address, email, phone }
         let OrderData = await createOrderService(Order)
         return res.status(200).json({
             EC: 0,
             data: OrderData
+        })
+    },
+    postCreateUser: async (req, res) => {
+        let { name, password, account, address, email, phone } = req.body
+        let User = { name, password, account, address, email, phone }
+        let UserData = await createUserService(User)
+        return res.status(200).json({
+            EC:0,
+            data: UserData
         })
     }
 }

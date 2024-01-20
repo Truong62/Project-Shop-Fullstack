@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.list-order{
+    padding: 30px;
+}
+.text-in-table{
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline;
+    margin-right: 10px;
+}
