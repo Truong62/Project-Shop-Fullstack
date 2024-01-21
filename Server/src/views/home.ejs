@@ -19,14 +19,26 @@
   </head>
   <body>
     <div class="container list-order">
-      <table class="table">
+      <div class="py-3 d-flex header justify-content-between">
+        <h3>Order List</h3>
+        <select class="form-select" style="width: 300px;" aria-valuemax="Select order status">
+          <option value="">All</option>
+          <option value="Pending">Pending</option>
+          <option value="Success">Success</option>
+          <option value="Cancel">Cancel</option>
+        </select>
+      </div>
+      <table class="table table-bordered border-secondary">
         <thead>
           <tr>
+            <th scope="col">#</th>
             <th scope="col">Customer</th>
+            <th scope="col">Phone</th>
             <th scope="col">Time</th>
             <th scope="col">Product</th>
             <th scope="col">Status</th>
             <th scope="col">Address</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -34,29 +46,35 @@
           Date(dateTime).toLocaleString('en-US', { year: 'numeric', month:
           'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second:
           'numeric' }); return formattedDateTime; } %> <%
-          order.forEach(function(order) { %>
+          order.forEach(function(order, index) { %>
           <tr>
-            <th class="col"><%= order.customer_id %></th>
+            <th><%= index %></th>
+            <td class="col"><%= order.customer_id.name %></td>
+            <td class="col"><%= order.customer_id.phone %></td>
             <td><%= formatDateTime(order.order_date) %></td>
             <td>
                 <% order.product_orders.forEach(function(product, index) { %>
                     <p class="d-flex">
-                      <%= product.product_id %> 
+                      <%= product.product_id.name %> 
                       <p class="text-in-table">quantity :</p> <%= product.quantity %> 
                       <p class="text-in-table">size :</p> <%= product.size %>
-                      <% if (index < order.product_orders.length - 1) { %>
-                        <hr>
-                      <% } %>
                     </p>
                   <% }); %>
             </td>
             <td> <%= order.status %></td>
-            <td> <%= order.address %></td>
+            <td> <%= order.customer_id.address %></td>
+            <td >
+              <button type="button" class="btn btn-success text-dark">
+                <a  class="text-decoration-none text-dark" href="/list-order/update/<%= order._id %>?status=Success">Success</a>
+              </button>
+              <button type="button" class="btn btn-danger text-dark">
+                <a class="text-decoration-none text-dark" href="/list-order/delete/<%= order._id %>?status=Cancel">Cancel</a>
+              </button>
+            </td>
           </tr>
           <% }); %>
         </tbody>
       </table>
     </div>
-    
   </body>
 </html>
