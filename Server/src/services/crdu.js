@@ -8,11 +8,15 @@ module.exports = {
         const page = data.page;
         const { filter, limit } = aqp(data);
         delete filter.page;
+        // console.log(filter.status)
         let offset = (page - 1) * limit;
         const populationProduct = "product_orders.product_id";
         const populationCustomer = "customer_id"; 
-        filter.status = { $nin: ['Success', 'Cancel'] };
-
+        if(filter.status === undefined || filter.status === "all"){
+            filter.status = { $nin: '' };
+        }else{
+            filter.status = { $in: filter.status };
+        }
         try {
             result = await Orders
                 .find(filter)
@@ -33,6 +37,6 @@ module.exports = {
     },
     deleteOrderList: async (data,qurey) =>{
         await module.exports.putDataOrderList(data,qurey)
-        await Orders.deleteById( data );
+        // await Orders.deleteById( data );
     }
 }

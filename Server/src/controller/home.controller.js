@@ -18,7 +18,7 @@ module.exports = {
     },
     deleteListOrder: async (req, res) => {
         let idOrder = req.params.id;
-        console.log(idOrder)
+        // console.log(idOrder)
         await deleteOrderList(idOrder, req.query);
         res.redirect("/list-order");
     },

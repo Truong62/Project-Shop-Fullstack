@@ -10,6 +10,7 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -20,9 +21,9 @@
   <body>
     <div class="container list-order">
       <div class="py-3 d-flex header justify-content-between">
-        <h3>Order List</h3>
-        <select class="form-select" style="width: 300px;" aria-valuemax="Select order status">
-          <option value="">All</option>
+        <h2 class="Logo badge bg-dark rounded-pill">Order List</h2>
+        <select id="orderStatusSelect" class="form-select" style="width: 200px;" >
+          <option value="all" selected>All</option>
           <option value="Pending">Pending</option>
           <option value="Success">Success</option>
           <option value="Cancel">Cancel</option>
@@ -49,19 +50,19 @@
           order.forEach(function(order, index) { %>
           <tr>
             <th><%= index %></th>
-            <td class="col"><%= order.customer_id.name %></td>
+            <td class="col"> <button type="button" class="btn btn-info"><%= order.customer_id.name %></button></td>
             <td class="col"><%= order.customer_id.phone %></td>
             <td><%= formatDateTime(order.order_date) %></td>
             <td>
                 <% order.product_orders.forEach(function(product, index) { %>
                     <p class="d-flex">
-                      <%= product.product_id.name %> 
+                       <button type="button" class="btn btn-info"><%= product.product_id.name %></button>
                       <p class="text-in-table">quantity :</p> <%= product.quantity %> 
                       <p class="text-in-table">size :</p> <%= product.size %>
                     </p>
                   <% }); %>
             </td>
-            <td> <%= order.status %></td>
+            <td> <button type="button" class="btn btn-secondary"><%= order.status %></button></td>
             <td> <%= order.customer_id.address %></td>
             <td >
               <button type="button" class="btn btn-success text-dark">
@@ -76,5 +77,6 @@
         </tbody>
       </table>
     </div>
+    <script src="/js/home.js"></script>
   </body>
 </html>
