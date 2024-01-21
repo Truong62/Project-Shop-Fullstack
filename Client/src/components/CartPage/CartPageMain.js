@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import Header from '../HomePage/Header';
 import FormContainer from '../common/FormContailer';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProduct, selectCart, updateQuantity } from '../../redux/Slice/cartSlice';
+import { deleteProduct, selectCart, updateQuantity, updateSizeProduct } from '../../redux/Slice/cartSlice';
 import Dropdown from '../common/Dropdown';
 import { Link } from 'react-router-dom';
 import Footer from '../HomePage/Footer';
@@ -19,6 +19,9 @@ const CartPageMain = () => {
     }, 0);
     const handleQuantityChange = (item, newQuantity) => {
         dispatch(updateQuantity({ _id: item._id, quantity: newQuantity }));
+    };
+    const handleSizeChange = (item, newSize) => {
+        dispatch(updateSizeProduct({ _id: item._id, sizeOrder: newSize }));
     };
 
     return (
@@ -46,8 +49,14 @@ const CartPageMain = () => {
                                             <p className='mt-3 text-xl font-normal text-black'>{item.name}</p>
                                         </div>
                                         <div className='flex items-center justify-start mt-12'>
-                                            <Dropdown classNameItem="absolute bg-slate-50 px-5 pb-5 w-[210px] border border-[#DEDEDE] shadow-lg"
-                                                className="w-[210px] border border-[#DEDEDE] p-4 mr-8" data={item.size} table={"Size"} status={false} tableStaus={true}></Dropdown>
+                                            <Dropdown
+                                                classNameItem="absolute bg-slate-50 px-5 pb-5 w-[210px] border border-[#DEDEDE] shadow-lg"
+                                                onClick={() => handleSizeChange(item)}
+                                                className="w-[210px] border border-[#DEDEDE] p-4 mr-8"
+                                                data={item.size}
+                                                table={"Size"}
+                                                status={false}
+                                                tableStaus={true}></Dropdown>
                                             <input type="number" className='p-4 mt-3 mb-5 border border-[#DEDEDE]' placeholder='Quantity' onChange={(e) => handleQuantityChange(item, e.target.value)} value={item.quantity} name='quantityOder' />
                                         </div>
                                         <div className='mt-auto cursor-pointer' onClick={() => dispatch(deleteProduct(item))}>

@@ -4,6 +4,7 @@ import Select from './Select';
 const Dropdown = ({ className = "", data, table, status = true, classNameTable, onClick, classNameItem, tableStaus = false }) => {
     const [ShowSelec, setShowSelec] = useState(status);
     const [selectedItem, setSelectedItem] = useState('');
+    
     const handleCheckboxChange = (item) => {
         if (selectedItem === item) {
             setShowSelec(false)
@@ -12,6 +13,11 @@ const Dropdown = ({ className = "", data, table, status = true, classNameTable, 
             setShowSelec(false)
             setSelectedItem(item);
         }
+    };
+    const handleCheckboxClick = (event, item) => {
+        event.stopPropagation();
+        handleCheckboxChange(item);
+        onClick(item, selectedItem);
     };
     return (
         <Select className='mb-5'>
@@ -31,9 +37,17 @@ const Dropdown = ({ className = "", data, table, status = true, classNameTable, 
                     <div className={`${classNameItem}`}>
                         {data.map((item, index) => (
                             <div className="cursor-pointer" key={item}>
-                                <div className="flex items-center mt-5 text-black cursor-pointer" >
-                                    <input onClick={() => handleCheckboxChange(item)} className='w-5 h-5 checked:bg-black focus:bg-black' type="checkbox" id={item} name={item} value={item} checked={selectedItem === item} />
-                                    <label onClick={onClick} className='pl-3' htmlFor={item}>{item}</label>
+                                <div className="flex items-center mt-5 text-black cursor-pointer" onClick={() => onClick(item,selectedItem)}>
+                                    <input
+                                        onChange={(event) => handleCheckboxClick(event, item)}
+                                        className='w-5 h-5 checked:bg-black focus:bg-black'
+                                        type="checkbox"
+                                        id={item}
+                                        name={item}
+                                        value={item}
+                                        checked={selectedItem === item}
+                                    />
+                                    <label className='pl-3' htmlFor={item}>{item}</label>
                                 </div>
                             </div>
                         ))}
