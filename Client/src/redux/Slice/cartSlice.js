@@ -11,7 +11,7 @@ const cartSlice = createSlice({
       const productIndex = state.cartItems.findIndex((p) => p._id === productToAdd._id);
 
       if (productIndex === -1) {
-        state.cartItems.push({ ...productToAdd, quantity: 1 ,sizeOrder: ""});
+        state.cartItems.push({ ...productToAdd, quantity: 1, sizeOrder: "" });
       } else {
         state.cartItems[productIndex].quantity += 1;
       }
@@ -34,14 +34,17 @@ const cartSlice = createSlice({
     updateSizeProduct: (state, action) => {
       const { _id, sizeOrder } = action.payload;
       const productToUpdateIndex = state.cartItems.findIndex((p) => p._id === _id);
-  
+
       if (productToUpdateIndex !== -1) {
-          state.cartItems[productToUpdateIndex].sizeOrder = sizeOrder;
+        state.cartItems[productToUpdateIndex].sizeOrder = sizeOrder;
       }
-  },
+    },
+    resetCart: (state) => {
+      state.cartItems = [];
+    },
   },
 });
 
-export const { addProduct, deleteProduct ,updateQuantity,updateSizeProduct} = cartSlice.actions;
+export const { addProduct, deleteProduct, updateQuantity, updateSizeProduct, resetCart } = cartSlice.actions;
 export const selectCart = (state) => state.cart;
 export default cartSlice.reducer;

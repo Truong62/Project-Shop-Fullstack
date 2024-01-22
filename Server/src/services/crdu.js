@@ -11,17 +11,17 @@ module.exports = {
         // console.log(filter.status)
         let offset = (page - 1) * limit;
         const populationProduct = "product_orders.product_id";
-        const populationCustomer = "customer_id"; 
-        if(filter.status === undefined || filter.status === "all"){
+        const populationCustomer = "customer_id";
+        if (filter.status === undefined || filter.status === "all") {
             filter.status = { $nin: '' };
-        }else{
+        } else {
             filter.status = { $in: filter.status };
         }
         try {
             result = await Orders
                 .find(filter)
                 .populate(populationProduct)
-                .populate(populationCustomer)  
+                .populate(populationCustomer)
                 .skip(offset)
                 .limit(limit)
                 .exec();
@@ -31,12 +31,12 @@ module.exports = {
         }
         return result;
     },
-    putDataOrderList: async (data,query) =>{
-        const {filter}  = aqp(query);
-        await Orders.updateOne({ _id: data }, { status: filter.status});
+    putDataOrderList: async (data, query) => {
+        const { filter } = aqp(query);
+        await Orders.updateOne({ _id: data }, { status: filter.status });
     },
-    deleteOrderList: async (data,qurey) =>{
-        await module.exports.putDataOrderList(data,qurey)
+    deleteOrderList: async (data, qurey) => {
+        await module.exports.putDataOrderList(data, qurey)
         // await Orders.deleteById( data );
     }
 }

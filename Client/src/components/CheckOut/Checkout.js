@@ -1,53 +1,73 @@
-import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectCart } from '../../redux/Slice/cartSlice';
+
+import React, { Fragment, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCart, resetCart } from '../../redux/Slice/cartSlice';
 import FormContainer from '../common/FormContailer';
 import InputFrom from '../common/InputFrom';
+import CreateOrder from '../API/CreateOrder';
 
 const Checkout = () => {
-
+    const dispatch = useDispatch()
     const productCart = useSelector(selectCart);
     const totalAmount = productCart.cartItems.reduce((total, product) => {
         const price = parseFloat(product.price);
         const quantity = product.quantity;
         return total + price * quantity;
     }, 0);
-
+    const [checkDataCustomers, setCheckDataCustomers] = useState(true)
     const [Customers, setCustomers] = useState({
         name: "",
         address: "",
         phone: "",
         email: "",
     })
-
-    const [validateName, setValidateName] = useState(true)
-    const [validateAddress, setValidateAddress] = useState(true)
-    const [validatePhone, setValidatePhone] = useState(true)
-    const [validateEmai, setValidateEmail] = useState(true)
-    const handleSubmit = (e) => {
-        if (Customers.name === "") {
-            setValidateName(false)
-        }
-        if (Customers.address === "") {
-            setValidateAddress(false)
-        }
-        if (Customers.phone === "") {
-            setValidatePhone(false)
-        }
-        if (Customers.email === "") {
-            setValidateEmail(false)
-        }
-    }
-
+    const [validation, setValidation] = useState({
+        name: true,
+        address: true,
+        phone: true,
+        email: true,
+    });
     const handleInputChange = (e) => {
-        handleSubmit(e)
         setCustomers({
             ...Customers,
-            [e.target.name]: (e.target.value).toString(),
-        })
-    }
-    console.log(Customers);
+            [e.target.name]: e.target.value,
+        });
+    };
+    const handleSubmit = (e) => {
+        const newValidation = {
+            name: Customers.name !== "",
+            address: Customers.address !== "",
+            phone: /^\d{10}$/.test(Customers.phone),
+            email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(Customers.email),
+        };
+        setValidation(newValidation);
+    };
+    const history = useNavigate();
+    useEffect(() => {
+        if (validation.name && validation.address && validation.phone && validation.email) {
+            setCheckDataCustomers(true)
+            let orderSuccess = CreateOrder(Customers, productCart);
+            orderSuccess.then((r) => {
+                if (r === undefined || r === "" || r === null) {
+                    console.log("hahah")
+                } else {
+                    dispatch(resetCart());
+                    history('/');
+                }
+            })
+
+        }
+        if (!validation.name || !validation.address || !validation.phone || !validation.email) {
+            setCheckDataCustomers(false)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [validation]);
+
+    const handleConfirmPayment = async () => {
+        await handleSubmit();
+    };
+
     return (
         <Fragment>
             <div className='flex items-center justify-between px-20 border-b border-[#DEDEDE]'>
@@ -90,10 +110,10 @@ const Checkout = () => {
                             </div>
                         </div>
                         <p className='mb-5 text-lg font-medium text-black'>Add Payment Details</p>
-                        {validateName ? <InputFrom nameLabel="Customers" type="text" idInput="customerName" name="name" placeholder="input mame customer ..." handleInputChange={handleInputChange}></InputFrom> : <InputFrom nameLabel="Customers" type="text" idInput="customerName" name="name" placeholder="input mame customer ..." handleInputChange={handleInputChange}></InputFrom>}
-                        <InputFrom nameLabel="Address" type="text" idInput="customerAddress" name="address" placeholder="input address customer ..." handleInputChange={handleInputChange}></InputFrom>
-                        <InputFrom nameLabel="Phone" type="text" idInput="customerPhone" name="phone" placeholder="input phone customer ..." handleInputChange={handleInputChange}></InputFrom>
-                        <InputFrom nameLabel="Email" type="email" idInput="customerEmail" name="email" placeholder="input email customer..." handleInputChange={handleInputChange}></InputFrom>
+                        <InputFrom checkvalidate={validation.name} nameLabel="Customers" type="text" idInput="customerName" name="name" placeholder="input mame customer ..." handleInputChange={handleInputChange}></InputFrom>
+                        <InputFrom checkvalidate={validation.address} nameLabel="Address" type="text" idInput="customerAddress" name="address" placeholder="input address customer ..." handleInputChange={handleInputChange}></InputFrom>
+                        <InputFrom checkvalidate={validation.phone} nameLabel="Phone" type="text" idInput="customerPhone" name="phone" placeholder="input phone customer ..." handleInputChange={handleInputChange}></InputFrom>
+                        <InputFrom checkvalidate={validation.email} nameLabel="Email" type="email" idInput="customerEmail" name="email" placeholder="input email customer..." handleInputChange={handleInputChange}></InputFrom>
                     </div>
                     <div className='w-4/12 px-5 border border-[#DEDEDE] rounded-md'>
                         <h3 className='text-2xl font-medium mt-7'>Summary</h3>
@@ -118,7 +138,8 @@ const Checkout = () => {
                     <div className="px-6 py-4 text-white bg-black rounded-sm">
                         <Link to={"/cart"} className="font-normal">BACK</Link>
                     </div>
-                    <div className="px-6 py-4 text-white bg-black rounded-sm">
+                    {!checkDataCustomers && <div>ERROR</div>}
+                    <div onClick={handleConfirmPayment} className="px-6 py-4 text-white bg-black rounded-sm">
                         <p className="font-normal">Confirm Payment: {totalAmount.toFixed(2)}</p>
                     </div>
                 </div>
