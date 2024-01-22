@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Header from '../HomePage/Header';
 import FormContainer from '../common/FormContailer';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,8 +9,20 @@ import Footer from '../HomePage/Footer';
 
 const CartPageMain = () => {
     const [isShow, setShow] = useState(true)
+    const [isCheckSize, setCheckSize] = useState()
     const productCart = useSelector(selectCart);
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        productCart.cartItems.forEach((item, index) => {
+            if (item.sizeOrder === "" || item.sizeOrder === undefined || item.sizeOrder == null) {
+                setCheckSize(false);
+            } else {
+                setCheckSize(true);
+            }
+        });
+    }, [productCart.cartItems]);
+
 
     const totalAmount = productCart.cartItems.reduce((total, product) => {
         const price = parseFloat(product.price);
@@ -51,7 +63,7 @@ const CartPageMain = () => {
                                         <div className='flex items-center justify-start mt-12'>
                                             <Dropdown
                                                 classNameItem="absolute bg-slate-50 px-5 pb-5 w-[210px] border border-[#DEDEDE] shadow-lg"
-                                                onClick={() => handleSizeChange(item)}
+                                                onClick={(size) => handleSizeChange(item, size)}
                                                 className="w-[210px] border border-[#DEDEDE] p-4 mr-8"
                                                 data={item.size}
                                                 table={"Size"}
@@ -87,11 +99,17 @@ const CartPageMain = () => {
                             <p className='text-lg font-medium'>Total</p>
                             <p className='text-lg font-medium'>{`$ ${totalAmount.toFixed(2)}`}</p>
                         </div>
-                        <Link to={"/checkout"} >
-                            <div className='py-4 text-center text-white bg-black cursor-pointer mt-9'>
-                                <button className='text-base font-medium'>Checkout</button>
+                        {isCheckSize ?
+                            <Link to={"/checkout"} >
+                                <div className='py-4 text-center text-white bg-black cursor-pointer mt-9'>
+                                    <button className='text-base font-medium'>Checkout</button>
+                                </div>
+                            </Link>
+                            :
+                            <div className='py-4 text-center text-black bg-gray-300 border border-red-400 cursor-not-allowed mt-9'>
+                                <button className='text-base font-medium cursor-not-allowed'>Checkout</button>
                             </div>
-                        </Link>
+                        }
                         <div className='flex items-center justify-center py-4 mt-6 bg-white cursor-pointer'>
                             <img srcSet="./Bitmap.png 2x" alt="" />
                         </div>

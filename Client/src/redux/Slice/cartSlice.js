@@ -31,11 +31,14 @@ const cartSlice = createSlice({
         state.cartItems[productToUpdateIndex].quantity = newQuantity;
       }
     },
-    updateSizeProduct: (state,action) =>{
-      const { _id ,sizeOrder  } = action.payload;
+    updateSizeProduct: (state, action) => {
+      const { _id, sizeOrder } = action.payload;
       const productToUpdateIndex = state.cartItems.findIndex((p) => p._id === _id);
-      state.cartItems[productToUpdateIndex].sizeOrder = "dsdsd";
-    }
+  
+      if (productToUpdateIndex !== -1) {
+          state.cartItems[productToUpdateIndex].sizeOrder = sizeOrder;
+      }
+  },
   },
 });
 

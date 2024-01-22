@@ -61,6 +61,7 @@ module.exports = {
             const phoneCustome = await Customer.find({ phone: data.phone })
             // return phoneCustome
             if (phoneCustome.length > 0) {
+                await Customer.updateOne({ _id: phoneCustome[0]._id }, { address: data.address});
                 result = await Orders.create({
                     customer_id: phoneCustome[0]._id,
                     order_date: new Date(),

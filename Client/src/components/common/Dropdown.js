@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Select from './Select';
+import { useDispatch } from 'react-redux';
+import { updateSizeProduct } from '../../redux/Slice/cartSlice';
 
 const Dropdown = ({ className = "", data, table, status = true, classNameTable, onClick, classNameItem, tableStaus = false }) => {
     const [ShowSelec, setShowSelec] = useState(status);
     const [selectedItem, setSelectedItem] = useState('');
-    
+    const dispatch = useDispatch()
     const handleCheckboxChange = (item) => {
         if (selectedItem === item) {
             setShowSelec(false)
@@ -18,6 +20,9 @@ const Dropdown = ({ className = "", data, table, status = true, classNameTable, 
         event.stopPropagation();
         handleCheckboxChange(item);
         onClick(item, selectedItem);
+    };
+    const handleSizeSelect = (size) => {
+        dispatch(updateSizeProduct({ _id: selectedItem, sizeOrder: size }));
     };
     return (
         <Select className='mb-5'>
@@ -37,7 +42,7 @@ const Dropdown = ({ className = "", data, table, status = true, classNameTable, 
                     <div className={`${classNameItem}`}>
                         {data.map((item, index) => (
                             <div className="cursor-pointer" key={item}>
-                                <div className="flex items-center mt-5 text-black cursor-pointer" onClick={() => onClick(item,selectedItem)}>
+                                <div className="flex items-center mt-5 text-black cursor-pointer" onClick={() => handleSizeSelect(item)}>
                                     <input
                                         onChange={(event) => handleCheckboxClick(event, item)}
                                         className='w-5 h-5 checked:bg-black focus:bg-black'

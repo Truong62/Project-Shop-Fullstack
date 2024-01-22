@@ -4,7 +4,7 @@ import ProductPageMain from "./components/ProductPage/ProductPageMain";
 import ProductDetailsPageMain from "./components/ProductDetailsPage/ProductDetailsPageMain";
 import ScrollToTopOnPathChange from "./components/common/ScrollToTop";
 import CartPageMain from "./components/CartPage/CartPageMain";
-
+import Checkout from "./components/CheckOut/Checkout";
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
         <Route path="/products-sales" element={<ProductPageMain></ProductPageMain>}></Route>
         <Route path="/products-details/:id" element={<ProductDetailsPageMain ></ProductDetailsPageMain>}></Route>
         <Route path="/cart" element={<CartPageMain></CartPageMain>}></Route>
+        <Route path="/checkout" element={<Checkout></Checkout>}></Route>
         <Route path="*" element={<h1>page does not exist</h1>}></Route>
       </Routes>
     </div>
