@@ -1,14 +1,13 @@
 
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectCart, resetCart } from '../../redux/Slice/cartSlice';
+import { useSelector } from 'react-redux';
+import { selectCart } from '../../redux/Slice/cartSlice';
 import FormContainer from '../common/FormContailer';
 import InputFrom from '../common/InputFrom';
 import CreateOrder from '../API/CreateOrder';
 
 const Checkout = () => {
-    const dispatch = useDispatch()
     const productCart = useSelector(selectCart);
     const totalAmount = productCart.cartItems.reduce((total, product) => {
         const price = parseFloat(product.price);
@@ -45,18 +44,12 @@ const Checkout = () => {
     };
     const history = useNavigate();
     useEffect(() => {
+        if (productCart.cartItems.length < 1) {
+            history('/');
+        }
         if (validation.name && validation.address && validation.phone && validation.email) {
             setCheckDataCustomers(true)
-            let orderSuccess = CreateOrder(Customers, productCart);
-            orderSuccess.then((r) => {
-                if (r === undefined || r === "" || r === null) {
-                    console.log("hahah")
-                } else {
-                    dispatch(resetCart());
-                    history('/');
-                }
-            })
-
+            CreateOrder(Customers, productCart);
         }
         if (!validation.name || !validation.address || !validation.phone || !validation.email) {
             setCheckDataCustomers(false)

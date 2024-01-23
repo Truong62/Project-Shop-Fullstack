@@ -9,11 +9,11 @@ import Dropdown from '../common/Dropdown';
 
 
 const ContentProductPage = () => {
-    const GenderArr = ["Male" ,"Female" ,];
-    const PriceRangeArr = ["Below $50" ,"Above $50" ,];
-    const SizeArr = ["XS (UK 4-6)","S (UK 8-10)","M (UK 12-14)","L (UK 12-14)",];
-    const JerseyArr = ["Home","Away","Custom",];
-    const FootballArr = ["FC Barcelona","AS Roma","Athletico Madrid","Paris Saint-Germain",];
+    const GenderArr = ["Male", "Female",];
+    const PriceRangeArr = ["Below $50", "Above $50",];
+    const SizeArr = ["XS (UK 4-6)", "S (UK 8-10)", "M (UK 12-14)", "L (UK 12-14)",];
+    const JerseyArr = ["Home", "Away", "Custom",];
+    const FootballArr = ["FC Barcelona", "AS Roma", "Athletico Madrid", "Paris Saint-Germain",];
 
     const [show, setShow] = useState(false);
     const [arrange, setArrange] = useState("Ascending");
@@ -66,19 +66,19 @@ const ContentProductPage = () => {
             <div className='grid grid-cols-3 gap-4 mt-10'>
                 <div className='col-span-1 sidebar'>
                     <Select className='select-gender' >
-                        <Dropdown className=' w-[230px]  ' classNameTable={"font-medium text-2xl w-full "} data={GenderArr} table={"Gender"}></Dropdown>
+                        <Dropdown onClick={() => { }} className=' w-[230px]  ' classNameTable={"font-medium text-2xl w-full "} data={GenderArr} table={"Gender"}></Dropdown>
                     </Select>
                     <Select className='select-price' >
-                        <Dropdown className=' w-[230px]' classNameTable={"font-medium text-2xl w-full "} data={PriceRangeArr} table={"Price Range"} ></Dropdown>
+                        <Dropdown onClick={() => { }} className=' w-[230px]' classNameTable={"font-medium text-2xl w-full "} data={PriceRangeArr} table={"Price Range"} ></Dropdown>
                     </Select>
                     <Select className='select-size' >
-                        <Dropdown className=' w-[230px]' classNameTable={"font-medium text-2xl w-full "} data={SizeArr} table={"Size"}></Dropdown>
+                        <Dropdown onClick={() => { }} className=' w-[230px]' classNameTable={"font-medium text-2xl w-full "} data={SizeArr} table={"Size"}></Dropdown>
                     </Select>
                     <Select className='select-football' >
-                        <Dropdown className=' w-[230px]' classNameTable={"font-medium text-2xl w-full "} data={FootballArr} table={"Football Team"} ></Dropdown>
+                        <Dropdown onClick={() => { }} className=' w-[230px]' classNameTable={"font-medium text-2xl w-full "} data={FootballArr} table={"Football Team"} ></Dropdown>
                     </Select>
                     <Select className='select-type' >
-                        <Dropdown className=' w-[230px]' classNameTable={"font-medium text-2xl w-full "} data={JerseyArr} table={"Jersey Type"} ></Dropdown>
+                        <Dropdown onClick={() => { }} className=' w-[230px]' classNameTable={"font-medium text-2xl w-full "} data={JerseyArr} table={"Jersey Type"} ></Dropdown>
                     </Select>
                 </div>
                 <div className='col-span-2'>

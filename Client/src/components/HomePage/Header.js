@@ -13,7 +13,7 @@ const Header = () => {
 
     return (
         <header className="sticky top-0 z-50">
-            <div className="flex items-center justify-between bg-black pl-28 pr-28">
+            <div className="flex items-center justify-between w-full bg-black pl-28 pr-28">
                 <div className="flex items-center justify-center">
                     <Link to={"/"} className='p-3'>
                         <img src="https://yt3.googleusercontent.com/HnAnUZS7d8LFtPHaHRtPH9nMoUmrsBBy_FDD-T-YQIycPW55peuWo1NO_rxPIswDbukXYlk7=s176-c-k-c0x00ffffff-no-rj" className='h-[50px] rounded-full mr-5' alt="" />

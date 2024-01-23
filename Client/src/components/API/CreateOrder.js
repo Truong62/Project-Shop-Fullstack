@@ -1,5 +1,15 @@
 import axios from 'axios';
+import { store } from "../../redux/store"
+import { resetCart } from '../../redux/Slice/cartSlice';
+import { useNavigate } from 'react-router-dom';
+
+const Reset = () => {
+    store.dispatch(resetCart());
+    const history = useNavigate();
+    history('/');
+}
 export default async function CreateOrder(dataCustomers, productCart) {
+
     let checkData = false;
     for (const field in dataCustomers) {
         if (dataCustomers[field] === "") {
@@ -8,7 +18,7 @@ export default async function CreateOrder(dataCustomers, productCart) {
             checkData = true
         }
     }
-    if (checkData) {
+    if (checkData && productCart.cartItems.length > 0) {
         let Order = {
             "phone": dataCustomers.phone,
             "address": dataCustomers.address,
@@ -25,6 +35,7 @@ export default async function CreateOrder(dataCustomers, productCart) {
         }
         try {
             let orderSuccess = await axios.post('http://localhost:8000/api/order', Order);
+            Reset()
             return orderSuccess.data
         } catch (error) {
             console.error('Error sending data to server:', error);

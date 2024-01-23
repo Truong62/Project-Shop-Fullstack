@@ -35,7 +35,6 @@ const CartPageMain = () => {
     const handleSizeChange = (item, newSize) => {
         dispatch(updateSizeProduct({ _id: item._id, sizeOrder: newSize }));
     };
-
     return (
         <Fragment>
             <Header></Header>
