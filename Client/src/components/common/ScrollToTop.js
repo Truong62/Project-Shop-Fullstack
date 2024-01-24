@@ -1,14 +1,11 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-function ScrollToTopOnPathChange() {
-  const location = useLocation();
-
+export default function ScrollToTopOnPathChange({ children }) {
+  const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location.pathname]);
+  }, [pathname]);
 
-  return null;
+  return children;
 }
-
-export default ScrollToTopOnPathChange;

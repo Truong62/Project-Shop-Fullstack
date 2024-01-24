@@ -1,18 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from '../HomePage/Header';
 import ContentProductPage from './ContentProductPage';
 import Footer from '../HomePage/Footer';
 import Subheader from '../HomePage/Subheader';
+import { motion } from "framer-motion";
 
 const ProductPageMain = () => {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-      }, []);
     return (
         <div>
             <Header></Header>
             <Subheader></Subheader>
-            <ContentProductPage></ContentProductPage>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
+            >
+                <ContentProductPage></ContentProductPage>
+            </motion.div>
             <Footer></Footer>
         </div>
     );

@@ -5,20 +5,26 @@ import { Link } from "react-router-dom"
 import FormContainer from '../common/FormContailer';
 import GetProduct from '../API/GetProducts';
 import Seemore from '../common/Seemore';
+import { motion } from "framer-motion";
 
 const Content = () => {
+
     return (
         <div>
             <div className='relative mt-10 banner '>
-                <div className="relative w-full h-full rounded-lg mix-blend-overlay -z-10 bg-gradient-to-t to-[#1a1919] from-[#1a1919] ">
+                <div className="box relative w-full h-full rounded-lg mix-blend-overlay -z-10 bg-gradient-to-t to-[#1a1919] from-[#1a1919] ">
                     <img src={banner}
                         alt=""
                         className="object-cover w-full h-full rounded-lg opacity-85"
                     />
-                    <div className="absolute left-5 bottom-5 text-white m-10 w-[350px] ">
+                    <motion.div
+                        initial={{ opacity: 0, x: -100 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1.2 }}
+                        className="absolute left-5 bottom-5 text-white m-10 w-[350px] ">
                         <h3 className='mb-6 text-2xl font-medium text-shadow'>Sweat-Wicking Performance</h3>
                         <span className='text-xl font-extralight text-shadow'>With a cropped silhouette for modern comfort that's made to move.</span>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
             <div className="mt-16 mb-10 list-product">
@@ -31,9 +37,17 @@ const Content = () => {
             <div className="mt-16 mb-32 new-release">
                 <h1 className='mt-10 mb-10 text-3xl font-bold'>New Release</h1>
                 <div className='grid grid-cols-2 gap-4'>
-                    <div className='relative flex justify-start '>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.9 }}
+                        className='relative flex justify-start '>
                         <img className='flex-shrink-0 w-550 h-750' src={release1} alt="" />
-                        <div className='absolute bottom-0 flex items-center justify-center p-3 bg-white cursor-pointer drop-shadow-lg right-1'>
+                        <motion.div
+                            initial={{ opacity: 0, x: -100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 1.2 }}
+                            className='absolute bottom-0 flex items-center justify-center p-3 bg-white cursor-pointer drop-shadow-lg right-1'>
                             <Link to={"/products-new-in"} className='pr-3 w-[190px] '>
                                 <h3 className='text-xl font-medium'>Paris Saint-Germain Home Kit</h3>
                                 <span className='text-[#868686] font-normal text-sm'>20/21</span>
@@ -44,11 +58,15 @@ const Content = () => {
                                 </svg>
 
                             </div>
-                        </div>
-                    </div>
-                    <div className='flex justify-end'>
+                        </motion.div>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.9 }}
+                        className='flex justify-end'>
                         <img className='flex-shrink-0 w-550 h-750' src={release2} alt="" />
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </div>

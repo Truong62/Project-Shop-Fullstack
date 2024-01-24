@@ -6,8 +6,6 @@ import Seemore from '../common/Seemore';
 import Breadcrumb from '../common/Breadcrumb';
 import Dropdown from '../common/Dropdown';
 
-
-
 const ContentProductPage = () => {
     const GenderArr = ["Male", "Female",];
     const PriceRangeArr = ["Below $50", "Above $50",];
