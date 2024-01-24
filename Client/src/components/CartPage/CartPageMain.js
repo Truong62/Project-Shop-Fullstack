@@ -39,8 +39,8 @@ const CartPageMain = () => {
         <Fragment>
             <Header></Header>
             <FormContainer>
-                <div className='flex mt-24 '>
-                    <div className='w-9/12 mr-3'>
+                <div className='flex mt-24 sm:mt-12 sm:flex-col'>
+                    <div className='w-9/12 mr-3 sm:w-full'>
                         <div className={isShow ? 'w-full bg-[#F5F5F5] font-medium flex justify-between px-5 py-4 items-center' : 'hidden'}>
                             <p className='text-[#646464] '>Items in your bag will be reserved for 60 minutes</p>
                             <svg onClick={() => { setShow(!isShow) }} className='cursor-pointer' xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
@@ -51,37 +51,38 @@ const CartPageMain = () => {
                         {productCart.cartItems.map((item, index) => (
                             <div key={index}>
                                 <div className='flex justify-start my-8 product-in-cart' >
-                                    <div className='w-4/12 h-full mr-8 '>
-                                        <img src={`http://localhost:8000/api/products/image/${item.thumbnailURL}`} alt="" className='h-[300px] w-[320px] cursor-pointer object-cover' />
+                                    <div className='w-4/12 h-full mr-8 sm:mr-4 sm:h-[150px]'>
+                                        <img src={`http://localhost:8000/api/products/image/${item.thumbnailURL}`} alt="" className='h-[300px] sm:h-[150px] w-[320px] cursor-pointer object-cover' />
                                     </div>
-                                    <div className='flex flex-col justify-between flex-1 w-8/12 h-[300px]'>
+                                    <div className='flex flex-col justify-between flex-1 w-8/12 h-[300px] sm:h-[150px]'>
                                         <div>
-                                            <p className='text-[#B02B2B] font-medium text-2xl'>{`$ ${item.price}`}</p>
-                                            <p className='mt-3 text-xl font-normal text-black'>{item.name}</p>
+                                            <p className='text-xl font-normal text-black sm:text-base'>{item.name}</p>
+                                            <p className='mt-3 text-[#B02B2B] font-medium text-2xl sm:text-lg sm:mt-2'>{`$ ${item.price}`}</p>
                                         </div>
-                                        <div className='flex items-center justify-start mt-12'>
+                                        <div className='flex items-center justify-start mt-12 sm:mt-1'>
                                             <Dropdown
-                                                classNameItem="absolute bg-slate-50 px-5 pb-5 w-[210px] border border-[#DEDEDE] shadow-lg"
+                                                classNameItem="absolute bg-slate-50 px-5 pb-5 sm:w-[100px] w-[220px] border border-[#DEDEDE] shadow-lg"
                                                 onClick={(size) => handleSizeChange(item, size)}
-                                                className="w-[210px] border border-[#DEDEDE] p-4 mr-8"
+                                                className="sm:w-[100px] w-[220px] border border-[#DEDEDE] p-4 mr-8 sm:p-1"
                                                 data={item.size}
                                                 table={"Size"}
                                                 status={false}
+                                                classNameTable="sm:text-sm"
                                                 tableStaus={true}></Dropdown>
-                                            <input type="number" className='p-4 mt-3 mb-5 border border-[#DEDEDE]' placeholder='Quantity' onChange={(e) => handleQuantityChange(item, e.target.value)} value={item.quantity} name='quantityOder' />
+                                            <input type="number" className='p-4 sm:text-sm sm:p-1 sm:w-[100px] mt-3 mb-5 sm:m-0 border border-[#DEDEDE]' placeholder='Quantity' onChange={(e) => handleQuantityChange(item, e.target.value)} value={item.quantity} name='quantityOder' />
                                         </div>
                                         <div className='mt-auto cursor-pointer' onClick={() => dispatch(deleteProduct(item))}>
-                                            <p className='text-[#FF4E4E] font-medium text-lg'>Remove this item</p>
+                                            <p className='text-[#FF4E4E] font-medium text-lg sm:text-base'>Remove this item</p>
                                         </div>
                                     </div>
                                 </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="791" height="2" viewBox="0 0 791 2" fill="none">
+                                <svg className='sm:w-full sm:mb-6' xmlns="http://www.w3.org/2000/svg" width="791" height="2" viewBox="0 0 791 2" fill="none">
                                     <path d="M0 1L790.5 1.5" stroke="#F3F3F3" />
                                 </svg>
                             </div>
                         ))}
                     </div>
-                    <div className='w-4/12 h-[450px] bg-[#F5F5F5] px-5'>
+                    <div className='w-4/12 h-[450px] bg-[#F5F5F5] px-5 sm:w-full'>
                         <h3 className='text-2xl font-medium mt-7'>Summary</h3>
                         <div className='flex justify-between mt-8'>
                             <p className='text-lg font-medium'>Subtotal</p>
@@ -121,7 +122,7 @@ const CartPageMain = () => {
                     <p className='text-[#868686] font-medium text-sm ml-4'>Continue shopping</p>
                 </Link>
             </FormContainer>
-            <Footer className={"mt-44"}></Footer>
+            <Footer className={"mt-44 sm:mt-20"}></Footer>
         </Fragment>
     );
 };

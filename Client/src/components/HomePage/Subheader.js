@@ -16,7 +16,7 @@ const products = [
 
 const Subheader = () => {
     return (
-        <div className='bg-[#F3F3F3] pl-28 pr-28 h-[60px] flex items-center justify-start'>
+        <div className='bg-[#F3F3F3] pl-28 pr-28 h-[60px] flex items-center justify-start sm:hidden'>
             <div className='text-[#868686]'>
                 {products.map((product, index) => (
                     <NavLink

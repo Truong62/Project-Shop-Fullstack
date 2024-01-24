@@ -10,7 +10,6 @@ import ScrollToTopOnPathChange from '../components/common/ScrollToTop';
 
 const RouterPage = () => {
     const location = useLocation()
-
     return (
         <Fragment>
             <AnimatePresence>

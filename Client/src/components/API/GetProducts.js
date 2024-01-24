@@ -25,7 +25,7 @@ const GetProduct = ({ children, className = "", page, limit }) => {
                     {data.data.map((item, index) => (
                         <div key={item._id} className='flex flex-col flex-1 item_product'>
                             <Link to={`/products-details/${item._id}`} className='cursor-pointer'>
-                                <img src={`http://localhost:8000/api/products/image/${item.thumbnailURL}`} alt={item.name} className='h-[270px] ease-in-out rounded-md duration-400 hover:shadow-product hover:transition-all w-full object-cover cursor-pointer' />
+                                <img src={`http://localhost:8000/api/products/image/${item.thumbnailURL}`} alt={item.name} className='h-[270px] sm:h-[200px] ease-in-out rounded-md duration-400 hover:shadow-product hover:transition-all  object-cover cursor-pointer' />
                             </Link>
                             <div className='flex flex-col flex-1 p-1 pt-5 info-product'>
                                 <Link to={`/products-details/${item._id}`} className='flex flex-col flex-1 item_product '>

@@ -35,15 +35,16 @@ const ContentProductPage = () => {
     }, []);
 
     return (
-        <FormContainer className='pt-10'>
-            <div className='flex justify-between'>
+        <FormContainer className='pt-10 sm:pt-5'>
+            <div className='flex justify-between sm:block'>
                 <div>
                     <Breadcrumb></Breadcrumb>
-                    <h1 className='text-3xl font-bold '>Women's Jerseys</h1>
+                    <h1 className='text-3xl font-bold sm:text-2xl sm:mb-3 sm:hidden'>Women's Jerseys</h1>
                 </div>
-                <div className='relative' ref={RefDrop}>
+                <div className='relative items-center justify-between sm:flex' ref={RefDrop}>
+                    <h1 className='hidden text-2xl font-semibold sm:flex'>Women's Jerseys</h1>
                     <div
-                        className="flex items-center justify-center w-full p-5 border border-gray-400 cursor-pointer"
+                        className="flex items-center justify-center w-full p-5 border border-gray-400 cursor-pointer sm:p-3 sm:w-[150px] sm:right-0 "
                         onClick={() => {
                             setShow(!show);
                         }}>
@@ -53,7 +54,7 @@ const ContentProductPage = () => {
                         </svg>
                     </div>
                     {show &&
-                        (<div className="absolute w-full bg-white border border-gray-400 shadow-lg cursor-pointer">
+                        (<div className="absolute w-full bg-white border border-gray-400 shadow-lg cursor-pointer sm:w-[150px] sm:top-12">
                             <div className="p-5 cursor-pointer" onClick={() => ChangeArrange("Ascending")}>Ascending</div>
                             <div className="p-5 cursor-pointer" onClick={() => ChangeArrange("Decrease")}>Decrease</div>
                             <div className="p-5 cursor-pointer" onClick={() => ChangeArrange("Hot")}>Hot</div>
@@ -61,8 +62,8 @@ const ContentProductPage = () => {
                         )}
                 </div>
             </div>
-            <div className='grid grid-cols-3 gap-4 mt-10'>
-                <div className='col-span-1 sidebar'>
+            <div className='grid grid-cols-3 gap-4 mt-10 '>
+                <div className='col-span-1 sidebar sm:hidden'>
                     <Select className='select-gender' >
                         <Dropdown onClick={() => { }} className=' w-[230px]  ' classNameTable={"font-medium text-2xl w-full "} data={GenderArr} table={"Gender"}></Dropdown>
                     </Select>
@@ -79,9 +80,10 @@ const ContentProductPage = () => {
                         <Dropdown onClick={() => { }} className=' w-[230px]' classNameTable={"font-medium text-2xl w-full "} data={JerseyArr} table={"Jersey Type"} ></Dropdown>
                     </Select>
                 </div>
-                <div className='col-span-2'>
-                    <GetProduct className='grid-cols-3 gap-x-5 gap-y-10'></GetProduct>
-                    <Seemore to='/products-new-in' className='flex items-center justify-center p-3 border-solid border-2 border-[#DEDEDE] font-medium rounded-lg cursor-pointer my-10' > Load More Products</Seemore>
+                <div className='col-span-2 sm:col-span-3'>
+                    <GetProduct className='grid-cols-3 gap-x-5 gap-y-10 sm:grid-cols-2 sm:gap-3'></GetProduct>
+                    <Seemore to='/products-american-football'
+                        className='flex items-center justify-center p-3 border-solid border-2 border-[#DEDEDE] font-medium rounded-lg cursor-pointer my-10' > Load More Products</Seemore>
                 </div>
             </div>
         </FormContainer>

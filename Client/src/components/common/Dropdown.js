@@ -25,7 +25,7 @@ const Dropdown = ({ className = "", data, table, status = true, classNameTable, 
         dispatch(updateSizeProduct({ _id: selectedItem, sizeOrder: size }));
     };
     return (
-        <Select className='mb-5'>
+        <Select className='mb-5 sm:m-0'>
             <div
                 className={`cursor-pointer flex justify-between items-center ${className}`}
                 onClick={() => {

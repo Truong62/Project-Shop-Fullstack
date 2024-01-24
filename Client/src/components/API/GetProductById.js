@@ -28,16 +28,18 @@ const GetProductById = ({ children, className = "" }) => {
     return (
         <Fragment>
             {data && data.data ? (
-                <div className={`flex justify-center product h-[600px] ${className}`}>
-                    <div className='block w-1/12 mx-2 item_product drop-shadow-lg'>
+                <div className={`flex sm:flex-col justify-center product h-max-[600px] sm:mx-auto ${className}`}>
+                    <div className='order-1 block w-1/12 mx-2 sm:mt-6 sm:justify-center sm:w-full sm:flex sm:order-2 item_product drop-shadow-lg'>
                         {data.data.imgDescription.map((item, index) => (
-                            <img key={index} src={`http://localhost:8000/api/products/image/${item}`} className='mb-5 cursor-pointer' alt={`${index}`} />
+                            <img key={index} src={`http://localhost:8000/api/products/image/${item}`}
+                                className='mb-5 cursor-pointer rounded-md sm:mr-5 sm:h-[80px] sm:w-[80px]' alt={`${index}`} />
                         ))}
                     </div>
-                    <div className='flex flex-col flex-1 w-7/12 mx-3'>
-                        <img src={`http://localhost:8000/api/products/image/${data.data.thumbnailURL}`} alt={data.data.name} className='h-[600px] w-auto drop-shadow-lg object-cover rounded' />
+                    <div className='flex flex-col flex-1 order-2 w-7/12 mx-3 sm:order-1 sm:justify-center sm:w-11/12'>
+                        <img src={`http://localhost:8000/api/products/image/${data.data.thumbnailURL}`} alt={data.data.name}
+                            className='sm:h-[300px] sm:w-full h-[600px] w-auto drop-shadow-lg object-cover rounded' />
                     </div>
-                    <div className='w-4/12 mx-2'>
+                    <div className='order-3 w-4/12 mx-2 sm:w-full sm:flex sm:flex-col sm:justify-center sm:mx-auto'>
                         <div className='info'>
                             <h3 className='mb-3 text-2xl font-normal text-black cursor-pointer'>{data.data.name}</h3>
                             <div className='flex my-5'>
@@ -52,7 +54,7 @@ const GetProductById = ({ children, className = "" }) => {
                                     <span className='text-[#868686] underline text-lg font-medium'>Size guide</span>
                                 </Link>
                             </div>
-                            <Dropdown classNameItem="absolute bg-slate-50 px-5 pb-5 w-[433px] border border-[#DEDEDE] shadow-lg"
+                            <Dropdown classNameItem="absolute bg-slate-50 px-5 pb-5 w-[433px] sm:w-[390px] border border-[#DEDEDE] shadow-lg"
                                 onClick={() => { }}
                                 className="w-full border border-[#DEDEDE] p-4" data={data.data.size} table={"Check size"} status={false}></Dropdown>
                             <div className='flex justify-between'>
@@ -71,19 +73,17 @@ const GetProductById = ({ children, className = "" }) => {
                                 </button>
                             </div>
                             <div className=' info'>
-                                <h3 className='mt-12 mb-4 text-xl font-medium'>Product Details</h3>
+                                <h3 className='mt-12 mb-4 text-xl font-medium sm:mt-6'>Product Details</h3>
                                 <p className='text-base font-normal leading-6' style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%)' }}>
                                     {data.data.description.length > 250
                                         ? `${data.data.description.substring(0, 250)} ...`
                                         : data.data.description}
                                 </p>
-                                <div className='flex items-center justify-center p-4 border  border-[#DEDEDE] cursor-pointer'>
+                                <div className=' flex items-center justify-center p-4 border  border-[#DEDEDE] cursor-pointer'>
                                     <p className='text-base font-medium'>Show More Details</p>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             ) : (

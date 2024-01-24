@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Breadcrumb = ({className =""}) => {
+const Breadcrumb = ({ className = "" }) => {
     return (
-        <div className= {`action-page ${className}`}>
+        <div className={`action-page ${className}`}>
             <div className='flex'>
                 <h3 className='p-2 pl-0'>Women </h3>
                 <h3 className='p-2'> / Football </h3>

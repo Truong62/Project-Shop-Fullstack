@@ -26,9 +26,9 @@ const ProductDetailsPageMain = () => {
             <FormContainer>
                 <Breadcrumb className='py-6'></Breadcrumb>
                 <GetProductById ></GetProductById>
-                <div className='mt-24 my-52 '>
-                    <h3 className='pb-8 text-3xl font-medium'>You Might Also Like</h3>
-                    <GetProduct topRef={topRef} className='grid-cols-4 gap-x-5 gap-y-10' page={1} limit={4}></GetProduct>
+                <div className='mt-24 my-52 sm:mt-10 sm:my-20'>
+                    <h3 className='pb-8 text-3xl font-medium sm:text-2xl'>You Might Also Like</h3>
+                    <GetProduct topRef={topRef} className='grid-cols-4 gap-x-5 gap-y-10 sm:grid-cols-2' page={1} limit={4}></GetProduct>
                 </div>
             </FormContainer>
             <Footer className="mt-24"></Footer>
