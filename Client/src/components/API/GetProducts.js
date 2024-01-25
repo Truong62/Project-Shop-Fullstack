@@ -9,7 +9,7 @@ const GetProduct = ({ children, className = "", page, limit }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/products?page=${page}&limit=${limit}`);
+                const response = await axios.get(`https://nntshop.onrender.com/api/products?page=${page}&limit=${limit}`);
                 setData(response.data);
             } catch (error) {
                 console.error('Error fetching data: ', error);
@@ -25,7 +25,7 @@ const GetProduct = ({ children, className = "", page, limit }) => {
                     {data.data.map((item, index) => (
                         <div key={item._id} className='flex flex-col flex-1 duration-500 item_product hover:scale-105 hover:transition-all'>
                             <Link to={`/products-details/${item._id}`} className='cursor-pointer'>
-                                <img src={`http://localhost:8000/api/products/image/${item.thumbnailURL}`} alt={item.name}
+                                <img src={`https://nntshop.onrender.com/api/products/image/${item.thumbnailURL}`} alt={item.name}
                                     className='h-[270px] shadow-product sm:h-[200px] ease-in-out rounded-md duration-400 object-cover cursor-pointer' />
                             </Link>
                             <div className='flex flex-col flex-1 p-1 pt-5 info-product'>

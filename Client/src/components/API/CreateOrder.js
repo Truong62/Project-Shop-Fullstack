@@ -34,7 +34,7 @@ export default async function CreateOrder(dataCustomers, productCart) {
             "status": "Pending"
         }
         try {
-            let orderSuccess = await axios.post('http://localhost:8000/api/order', Order);
+            let orderSuccess = await axios.post('https://nntshop.onrender.com/api/order', Order);
             Reset()
             return orderSuccess.data
         } catch (error) {

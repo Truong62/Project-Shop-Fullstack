@@ -16,7 +16,7 @@ const GetProductById = ({ children, className = "" }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/products/id/${id}`);
+                const response = await axios.get(`https://nntshop.onrender.com/api/products/id/${id}`);
                 setData(response.data);
 
             } catch (error) {
