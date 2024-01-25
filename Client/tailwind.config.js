@@ -24,6 +24,9 @@ module.exports = {
       boxShadow: {
         'product': '0 5px 60px -25px rgba(0, 0, 0, 0.3)',
       },
+      hover: {
+
+      },
       screens: {
         sm: { max: '768px' },
         md: '768px',

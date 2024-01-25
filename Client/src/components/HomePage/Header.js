@@ -16,10 +16,11 @@ const Header = () => {
             <div className="flex items-center justify-between w-full bg-black px-28 sm:px-5">
                 <div className="flex items-center justify-center">
                     <Link to={"/"} className='p-3'>
-                        <img src="https://yt3.googleusercontent.com/HnAnUZS7d8LFtPHaHRtPH9nMoUmrsBBy_FDD-T-YQIycPW55peuWo1NO_rxPIswDbukXYlk7=s176-c-k-c0x00ffffff-no-rj" className='h-[50px] rounded-full mr-5' alt="" />
+                        <img src="https://yt3.googleusercontent.com/HnAnUZS7d8LFtPHaHRtPH9nMoUmrsBBy_FDD-T-YQIycPW55peuWo1NO_rxPIswDbukXYlk7=s176-c-k-c0x00ffffff-no-rj"
+                            className='h-[50px] rounded-full mr-5' alt="" />
                     </Link>
-                    <Link to={"/"} className=' sm:hidden text-white w-[100px] text-center leading-fullheader hover:bg-[#F5F5F5] hover:text-black cursor-pointer'>Men</Link>
-                    <Link to={"/"} className=' sm:hidden text-white w-[100px] text-center leading-fullheader hover:bg-[#F5F5F5] hover:text-black cursor-pointer'>Women</Link>
+                    <Link to={"/"} className=' sm:hidden text-white w-[100px] text-center leading-fullheader hover:bg-[#F5F5F5] hover:scale-105 hover:transition-all duration-500 hover:text-black cursor-pointer'>Men</Link>
+                    <Link to={"/"} className=' sm:hidden text-white w-[100px] text-center leading-fullheader hover:bg-[#F5F5F5] hover:scale-105 hover:transition-all duration-500 hover:text-black cursor-pointer'>Women</Link>
                 </div>
                 <div className='flex items-center justify-center p-5 sm:hidden'>
                     <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" className='m-3 cursor-pointer'>

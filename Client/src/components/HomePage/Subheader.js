@@ -23,9 +23,7 @@ const Subheader = () => {
                         key={index}
                         to={product.to}
                         className={({ isActive }) =>
-                            isActive
-                                ? "text-black border-b-2 border-black m-3"
-                                : "m-3 cursor-pointer"
+                            isActive ? "text-black border-b-2 border-black m-3" : "m-3 cursor-pointer hover:border-b-2 hover:text-black hover:border-black hover:transition-all duration-300 ease-in-out"
                         }
                     >
                         {product.text}

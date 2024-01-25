@@ -28,14 +28,14 @@ const Content = () => {
                 </div>
             </div>
             <div className="mt-16 mb-10 list-product sm:mt-8 sm:mb-5">
-                <h1 className='mb-10 text-3xl font-bold sm:mb-5 sm:text-2xl'>Selling Fast</h1>
+                <h1 className='mb-10 text-3xl font-bold duration-500 sm:mb-5 sm:text-2xl hover:transition-all hover:text-gray-500'>Selling Fast</h1>
                 <GetProduct className='grid-cols-4 gap-x-12 gap-y-10 sm:grid-cols-2 sm:gap-x-5'></GetProduct>
             </div>
             <FormContainer>
-                <Seemore to="/products-new-in" className='flex items-center justify-center p-3 border-solid border-2 border-[#DEDEDE] font-medium rounded-lg cursor-pointer' >Sell All Products</Seemore>
+                <Seemore to="/products-new-in" className='flex items-center justify-center p-3 border-solid border-2 border-[#DEDEDE] font-medium rounded-lg cursor-pointer uration-500 hover:transition-all hover:text-gray-500' >Sell All Products</Seemore>
             </FormContainer>
             <div className="mt-16 mb-32 new-release sm:my-8">
-                <h1 className='my-10 text-3xl font-bold sm:my-5'>New Release</h1>
+                <h1 className='my-10 text-3xl font-bold sm:my-5 uration-500 hover:transition-all hover:text-gray-500'>New Release</h1>
                 <div className='grid grid-cols-2 gap-4'>
                     <motion.div
                         initial={{ opacity: 0, scale: 0 }}

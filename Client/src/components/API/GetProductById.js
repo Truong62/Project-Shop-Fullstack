@@ -57,7 +57,7 @@ const GetProductById = ({ children, className = "" }) => {
                             <Dropdown classNameItem="absolute bg-slate-50 px-5 pb-5 w-[433px] sm:w-[390px] border border-[#DEDEDE] shadow-lg"
                                 onClick={() => { }}
                                 className="w-full border border-[#DEDEDE] p-4" data={data.data.size} table={"Check size"} status={false}></Dropdown>
-                            <div className='flex justify-between'>
+                            <div className='flex justify-between sm:mt-5'>
                                 <button onClick={() => (dispatch(addProduct(data.data)))} className='flex items-center justify-center w-10/12 bg-black'>
                                     <h2 className='text-center text-[#fff] font-medium text-base'>Add To Bag</h2>
                                 </button>

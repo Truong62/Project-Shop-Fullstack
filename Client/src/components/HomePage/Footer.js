@@ -5,7 +5,7 @@ const Footer = ({ className }) => {
     return (
         <div className={`${className}`}>
             <FormContainer className="flex items-center justify-around bg-white">
-                <div className='grid grid-cols-4 gap-4 footer-content sm:grid-cols-2 sm:gap-x-9'>
+                <div className='grid grid-cols-4 gap-x-40 footer-content sm:grid-cols-2 sm:gap-x-9'>
                     <div className='custormer'>
                         <h3 className='mb-5 text-2xl font-medium text-black'>Customer</h3>
                         <p className='mb-5 text-[#000] font-light leading-6  text-sm  max-w-[120px]'>
