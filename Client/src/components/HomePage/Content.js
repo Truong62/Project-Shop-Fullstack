@@ -29,7 +29,7 @@ const Content = () => {
             </div>
             <div className="mt-16 mb-10 list-product sm:mt-8 sm:mb-5">
                 <h1 className='mb-10 text-3xl font-bold duration-500 sm:mb-5 sm:text-2xl hover:transition-all hover:text-gray-500'>Selling Fast</h1>
-                <GetProduct className='grid-cols-4 gap-x-12 gap-y-10 sm:grid-cols-2 sm:gap-x-5'></GetProduct>
+                <GetProduct className='grid-cols-4 gap-x-12 gap-y-10 sm:grid-cols-2 sm:gap-x-5' page={1} limit={8}></GetProduct>
             </div>
             <FormContainer>
                 <Seemore to="/products-new-in" className='flex items-center justify-center p-3 border-solid border-2 border-[#DEDEDE] font-medium rounded-lg cursor-pointer uration-500 hover:transition-all hover:text-gray-500' >Sell All Products</Seemore>

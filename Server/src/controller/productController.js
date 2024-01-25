@@ -13,7 +13,7 @@ const {
 
 
 module.exports = {
-    loginAccount: async (req,res) => {
+    loginAccount: async (req, res) => {
         return res.send("hellle")
     },
     getProductById: async (req, res) => {
@@ -59,11 +59,12 @@ module.exports = {
     //     }
     // },
     postMultipleProduct: async (req, res) => {
-        let { name, description, stock, price } = req.body
+        let { name, description, stock, price, size, discount } = req.body
         let { thumbnailURL, imgDescription } = req.files
-        let imgDescriptionUrl;
+        let imgDescriptionUrl = [];
         let ProductData = {}
 
+        console.log(size)
         if (!req.files || Object.keys(req.files).length === 0) {
             return res.status(400).send("No files were uploaded.")
         }
@@ -72,8 +73,10 @@ module.exports = {
         }
         if (Array.isArray(imgDescription)) {
             let Descriptionimg = await postMultipleImageServices(imgDescription)
-            let imgPaths = Descriptionimg.detail.map(img => img.path);
-            imgDescriptionUrl = imgPaths.join(',');
+            let imgPaths = Descriptionimg.detail.map((img) => {
+                return img.path
+            });
+            imgDescriptionUrl = imgDescriptionUrl.concat(imgPaths);
         } else {
             let Descriptionimg = await postSingleImageServices(imgDescription)
             imgDescriptionUrl = Descriptionimg.path
@@ -82,11 +85,15 @@ module.exports = {
         let ImgThumbnail = await postSingleImageServices(thumbnailURL)
         let ImgThumbnailUrl = ImgThumbnail.path
 
+        let sizeValues = size.split(',');
+        console.log(sizeValues)
         ProductData = {
             name,
             description,
             stock,
             price,
+            discount,
+            size: sizeValues,
             thumbnailURL: ImgThumbnailUrl,
             imgDescription: imgDescriptionUrl,
         }
@@ -111,7 +118,7 @@ module.exports = {
         let User = { name, password, account, address, email, phone }
         let UserData = await createUserService(User)
         return res.status(200).json({
-            EC:0,
+            EC: 0,
             data: UserData
         })
     }

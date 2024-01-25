@@ -61,7 +61,7 @@ module.exports = {
             const phoneCustome = await Customer.find({ phone: data.phone })
             // return phoneCustome
             if (phoneCustome.length > 0) {
-                await Customer.updateOne({ _id: phoneCustome[0]._id }, { address: data.address});
+                await Customer.updateOne({ _id: phoneCustome[0]._id }, { address: data.address });
                 result = await Orders.create({
                     customer_id: phoneCustome[0]._id,
                     order_date: new Date(),
@@ -113,9 +113,7 @@ module.exports = {
         let uploadPath = path.resolve(__dirname, "../public/image") //C: ...../public/image
 
         let extName = path.extname(data.name) //get img e.g: .png, .jpg
-
         // let baseName = path.basename(data.name, extName) // name img
-
         // let finaName = `${baseName}-${Date.now()}${extName}` 
         let finaName = `${Date.now()}${extName}`
 
@@ -188,9 +186,11 @@ module.exports = {
                 let result = await Product.create({
                     name: data.name,
                     description: data.description,
+                    thumbnailURL: data.thumbnailURL,
                     stock: data.stock,
                     price: data.price,
-                    thumbnailURL: data.thumbnailURL,
+                    size: data.size,
+                    discount: data.discount,
                     imgDescription: data.imgDescription,
                 })
                 return result
