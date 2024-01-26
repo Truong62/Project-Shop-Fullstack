@@ -31,12 +31,12 @@ const GetProductById = ({ children, className = "" }) => {
                 <div className={`flex sm:flex-col justify-center product h-max-[600px] sm:mx-auto ${className}`}>
                     <div className='order-1 block w-1/12 mx-2 sm:mt-6 sm:justify-center sm:w-full sm:flex sm:order-2 item_product drop-shadow-lg'>
                         {data.data.imgDescription.map((item, index) => (
-                            <img key={index} src={`http://localhost:8000/api/products/image/${item}`}
+                            <img key={index} src={`https://nntshop.onrender.com/api/products/image/${item}`}
                                 className='mb-5 cursor-pointer rounded-md sm:mr-5 sm:h-[80px] sm:w-[80px]' alt={`${index}`} />
                         ))}
                     </div>
                     <div className='flex flex-col flex-1 order-2 w-7/12 mx-3 sm:order-1 sm:justify-center sm:w-11/12'>
-                        <img src={`http://localhost:8000/api/products/image/${data.data.thumbnailURL}`} alt={data.data.name}
+                        <img src={`https://nntshop.onrender.com/api/products/image/${data.data.thumbnailURL}`} alt={data.data.name}
                             className='sm:h-[300px] sm:w-full h-[600px] w-auto drop-shadow-lg object-cover rounded' />
                     </div>
                     <div className='order-3 w-4/12 mx-2 sm:w-full sm:flex sm:flex-col sm:justify-center sm:mx-auto'>
