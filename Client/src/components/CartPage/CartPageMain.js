@@ -52,7 +52,7 @@ const CartPageMain = () => {
                             <div key={index}>
                                 <div className='flex justify-start my-8 product-in-cart' >
                                     <div className='w-4/12 h-full mr-8 sm:mr-4 sm:h-[150px]'>
-                                        <img src={`http://localhost:8000/api/products/image/${item.thumbnailURL}`} alt="" className='h-[300px] sm:h-[150px] w-[320px] cursor-pointer object-cover' />
+                                        <img src={`https://nntshop.onrender.com/api/products/image/${item.thumbnailURL}`} alt="" className='h-[300px] sm:h-[150px] w-[320px] cursor-pointer object-cover' />
                                     </div>
                                     <div className='flex flex-col justify-between flex-1 w-8/12 h-[300px] sm:h-[150px]'>
                                         <div>

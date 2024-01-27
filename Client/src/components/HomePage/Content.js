@@ -11,27 +11,27 @@ const Content = () => {
 
     return (
         <div>
-            <div className='relative mt-10 banner '>
-                <div className="box relative w-full h-full rounded-lg mix-blend-overlay -z-10 bg-gradient-to-t to-[#1a1919] from-[#1a1919] ">
-                    <img src={banner}
-                        alt=""
-                        className="object-cover w-full h-full rounded-lg opacity-85"
-                    />
-                    <motion.div
-                        initial={{ opacity: 0, x: -100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1.2 }}
-                        className="absolute left-5 bottom-5 text-white m-10 w-[300px] sm:left-3">
-                        <h3 className='mb-6 text-2xl font-medium text-shadow sm:text-lg sm:mb-5'>Sweat-Wicking Performance</h3>
-                        <span className='text-xl font-extralight text-shadow sm:text-base'>With a cropped silhouette for modern comfort that's made to move.</span>
-                    </motion.div>
-                </div>
-            </div>
-            <div className="mt-16 mb-10 list-product sm:mt-8 sm:mb-5">
-                <h1 className='mb-10 text-3xl font-bold duration-500 sm:mb-5 sm:text-2xl hover:transition-all hover:text-gray-500'>Selling Fast</h1>
-                <GetProduct className='grid-cols-4 gap-x-12 gap-y-10 sm:grid-cols-2 sm:gap-x-5' page={1} limit={8}></GetProduct>
-            </div>
             <FormContainer>
+                <div className='relative mt-10 banner '>
+                    <div className="relative w-full h-full rounded-lg box ">
+                        <img src={banner}
+                            alt=""
+                            className="object-cover w-full h-full rounded-lg "
+                        />
+                        <motion.div
+                            initial={{ opacity: 0, x: -100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 1.2 }}
+                            className="absolute left-5 bottom-5 text-white m-10 sm:w-[300px] sm:left-3">
+                            <h3 className='mb-6 text-2xl font-medium text-shadow sm:text-lg sm:mb-5'>Sweat-Wicking Performance</h3>
+                            <span className='text-xl font-extralight text-shadow sm:text-base'>With a cropped silhouette for modern comfort that's made to move.</span>
+                        </motion.div>
+                    </div>
+                </div>
+                <div className="mt-16 mb-10 list-product sm:mt-8 sm:mb-5">
+                    <h1 className='mb-10 text-3xl font-bold duration-500 sm:mb-5 sm:text-2xl hover:transition-all hover:text-gray-500'>Selling Fast</h1>
+                    <GetProduct className='grid-cols-4 gap-x-12 gap-y-10 sm:grid-cols-2 sm:gap-x-5' page={1} limit={8}></GetProduct>
+                </div>
                 <Seemore to="/products-new-in" className='flex items-center justify-center p-3 border-solid border-2 border-[#DEDEDE] font-medium rounded-lg cursor-pointer uration-500 hover:transition-all hover:text-gray-500' >Sell All Products</Seemore>
             </FormContainer>
             <div className="mt-16 mb-32 new-release sm:my-8">
