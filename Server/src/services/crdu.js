@@ -1,6 +1,6 @@
 const aqp = require("api-query-params");
 const Orders = require("../model/Orders")
-const Customer = require("../model/customers");
+const Customer = require("../model/Customers");
 const { query } = require("express");
 
 module.exports = {

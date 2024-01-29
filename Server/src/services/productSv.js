@@ -1,6 +1,6 @@
 const aqp = require("api-query-params");
 const Product = require("../model/Product")
-const Customer = require("../model/customers")
+const Customer = require("../model/Customers")
 const Orders = require("../model/Orders")
 const User = require("../model/User")
 const path = require("path")
