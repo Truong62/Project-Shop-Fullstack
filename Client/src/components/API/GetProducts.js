@@ -7,8 +7,16 @@ const GetProduct = ({ children, className = "", page, limit }) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
+        const activateSystem = async () => {
+            try {
+                await axios.get('https://nntshop.onrender.com/list-order');
+            } catch (error) {
+                console.error('Error activating system: ', error);
+            }
+        };
         const fetchData = async () => {
             try {
+                await activateSystem()
                 const response = await axios.get(`https://nntshop.onrender.com/api/products?page=${page}&limit=${limit}`);
                 setData(response.data);
             } catch (error) {

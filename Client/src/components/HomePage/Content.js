@@ -38,9 +38,9 @@ const Content = () => {
                 <h1 className='my-10 text-3xl font-bold sm:my-5 uration-500 hover:transition-all hover:text-gray-500'>New Release</h1>
                 <div className='grid grid-cols-2 gap-4'>
                     <motion.div
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.9 }}
+                        initial={{ opacity: 0, y: 168 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.5 }}
                         className='relative flex justify-start '>
                         <img className='flex-shrink-0 w-550 h-750' src={release1} alt="" />
                         <motion.div
@@ -56,14 +56,13 @@ const Content = () => {
                                 <svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg" className='sm:w-4 sm:h-4'>
                                     <path d="M25 6L14.8843 0.431738L15.1199 11.9763L25 6ZM0.520404 7.49979L16.0223 7.18343L15.9815 5.18384L0.479596 5.50021L0.520404 7.49979Z" fill="black" />
                                 </svg>
-
                             </div>
                         </motion.div>
                     </motion.div>
                     <motion.div
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.9 }}
+                        initial={{ opacity: 0, y: 168 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.5 }}
                         className='flex justify-end'>
                         <img className='flex-shrink-0 w-550 h-750' src={release2} alt="" />
                     </motion.div>
