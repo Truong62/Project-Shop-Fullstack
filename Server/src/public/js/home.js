@@ -1,16 +1,34 @@
 $(document).ready(function () {
-  var savedValue = localStorage.getItem('orderStatus');
-  if (savedValue) {
-      $('#orderStatusSelect').val(savedValue);
+  var table;
+
+  function initializeDataTable() {
+    if ($.fn.DataTable.isDataTable('table')) {
+      table.destroy();
+    }
+    table = $('table').DataTable({
+      order: [0, 'desc']
+    });
   }
 
-  $('#orderStatusSelect').on('change', function () {
-      var selectedValue = $(this).val();
+  initializeDataTable();
 
-      localStorage.setItem('orderStatus', selectedValue);
-
-      var newUrl = 'http://localhost:8000/list-order?status=' + encodeURIComponent(selectedValue);
-      console.log(encodeURIComponent(selectedValue));
-      window.location.href = newUrl;
+  $('#filterSuccess, #filterPending, #filterCancel').change(function () {
+    var selectedStatus = [];
+    if ($('#filterSuccess').prop('checked')) {
+      selectedStatus.push('Success');
+    }
+    if ($('#filterPending').prop('checked')) {
+      selectedStatus.push('Pending');
+    }
+    if ($('#filterCancel').prop('checked')) {
+      selectedStatus.push('Cancel');
+    }
+    if (selectedStatus.length === 0) {
+      selectedStatus.push('Pending');
+      $('#filterPending').prop('checked', true);
+    }
+    table.columns(5).search(selectedStatus.join('|'), true, false).draw();
   });
+
+  $('#filterPending').prop('checked', true).trigger('change');
 });

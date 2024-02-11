@@ -1,0 +1,75 @@
+<div class="container list-order">
+    <div class="py-3 d-flex header justify-content-between">
+        <h2 class="Logo badge bg-dark rounded-pill">Order List</h2>
+        <select id="orderStatusSelect" class="form-select" style="width: 200px;">
+            <option value="all" selected>All</option>
+            <option value="Pending">Pending</option>
+            <option value="Success">Success</option>
+            <option value="Cancel">Cancel</option>
+        </select>
+    </div>
+    <table class="table table-bordered border-secondary">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Time</th>
+                <th scope="col">Product</th>
+                <th scope="col">Status</th>
+                <th scope="col">Address</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% function formatDateTime(dateTime) { const formattedDateTime=new Date(dateTime).toLocaleString('en-US', {
+                year: 'numeric' , month: 'long' , day: 'numeric' , hour: 'numeric' , minute: 'numeric' ,
+                second: 'numeric' }); return formattedDateTime; } %>
+                <% order.forEach(function(order, index) { %>
+                    <tr>
+                        <th>
+                            <%= index %>
+                        </th>
+                        <td class="col"> <button type="button" class="btn btn-info">
+                                <%= order.customer_id.name %>
+                            </button></td>
+                        <td class="col">
+                            <%= order.customer_id.phone %>
+                        </td>
+                        <td>
+                            <%= formatDateTime(order.order_date) %>
+                        </td>
+                        <td>
+                            <% order.product_orders.forEach(function(product, index) { %>
+                                <p class="d-flex">
+                                    <button type="button" class="btn btn-info">
+                                        <%= product.product_id.name %>
+                                    </button>
+                                <p class="text-in-table">quantity :</p>
+                                <%= product.quantity %>
+                                    <p class="text-in-table">size :</p>
+                                    <%= product.size %>
+                                        </p>
+                                        <% }); %>
+                        </td>
+                        <td> <button type="button" class="btn btn-secondary">
+                                <%= order.status %>
+                            </button></td>
+                        <td>
+                            <%= order.customer_id.address %>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-success text-dark">
+                                <a class="text-decoration-none text-dark"
+                                    href="/list-order/update/<%= order._id %>?status=Success">Success</a>
+                            </button>
+                            <button type="button" class="btn btn-danger text-dark">
+                                <a class="text-decoration-none text-dark"
+                                    href="/list-order/delete/<%= order._id %>?status=Cancel">Cancel</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <% }); %>
+        </tbody>
+    </table>
+</div>

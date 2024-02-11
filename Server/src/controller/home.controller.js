@@ -9,6 +9,7 @@ const {
 module.exports = {
     getListOrder: async (req, res) => {
         let results_listOrder = await getAllListOrder(req.query);
+        // console.log(results_listOrder)
         return res.render("home.ejs", { order: results_listOrder });
     },
     updateListOrder: async (req, res) => {

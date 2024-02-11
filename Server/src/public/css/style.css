@@ -1,24 +1,57 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-.list-order{
+
+.list-order {
     padding: 30px 0;
 }
-.text-in-table{
+
+.text-in-table {
     font-weight: 700;
     text-transform: uppercase;
     display: inline;
     margin-right: 10px;
 }
-.container{
-    max-width: 1500px   
+
+.container {
+    max-width: 1500px
 }
-.Logo{
+
+.Logo {
     font-size: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 15px;
+}
+
+tbody {
+    font-weight: 500;
+}
+
+.check-box {
+    font-weight: 500;
+    font-size: 25px;
+    margin-left: 15px;
+    text-transform: uppercase;
+    font-style: italic;
+    text-align: center;
+}
+
+.checkbox-custom {
+    transform: scale(1.8);
+    margin-left: 25px;
+}
+
+.row {
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+.w {
+    width: 100px;
+    margin: 3px 0;
+    border: black solid 1px;
 }

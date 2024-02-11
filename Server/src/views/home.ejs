@@ -1,82 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="/css/style.css" />
-  </head>
-  <body>
-    <div class="container list-order">
-      <div class="py-3 d-flex header justify-content-between">
-        <h2 class="Logo badge bg-dark rounded-pill">Order List</h2>
-        <select id="orderStatusSelect" class="form-select" style="width: 200px;" >
-          <option value="all" selected>All</option>
-          <option value="Pending">Pending</option>
-          <option value="Success">Success</option>
-          <option value="Cancel">Cancel</option>
-        </select>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.datatables.net/v/dt/dt-1.13.10/datatables.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <div class="check-box">
+            <label>
+              <input class="checkbox-custom" type="checkbox" id="filterSuccess"> Success
+            </label>
+            <label>
+              <input class="checkbox-custom" type="checkbox" id="filterPending"> Pending
+            </label>
+            <label>
+              <input class="checkbox-custom" type="checkbox" id="filterCancel"> Cancel
+            </label>
+          </div>
+          <script>
+            window.onload = function () {
+              var pendingCheckbox = document.getElementById('filterPending');
+              pendingCheckbox.checked = true;
+            };
+          </script>
+          <thead>
+            <tr class="table-dark">
+              <th>#</th>
+              <th>Customer</th>
+              <th>Phone</th>
+              <th>Time</th>
+              <th>Product</th>
+              <th>Status</th>
+              <th>Address</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% function formatDateTime(dateTime) { const formattedDateTime=new Date(dateTime).toLocaleString('en-US', {
+              year: 'numeric' , month: 'long' , day: 'numeric' , hour: 'numeric' , minute: 'numeric' , second: 'numeric'
+              }); return formattedDateTime; } %>
+              <% order.forEach((row,index)=> { %>
+                <tr>
+                  <td>
+                    <%= index %>
+                  </td>
+                  <td>
+                    <%= row.customer_id.name %>
+                  </td>
+                  <td>
+                    <%= row.customer_id.phone %>
+                  </td>
+                  <td>
+                    <%= formatDateTime(row.order_date) %>
+                  </td>
+                  <td>
+                    <% row.product_orders.forEach(function(product, index) { %>
+                      <p class="d-flex">
+                        <button type="button" class="btn btn-info">
+                          <%= product.product_id.name %>
+                        </button>
+                      <p class="text-in-table">quantity :</p>
+                      <%= product.quantity %>
+                        <p class="text-in-table">size :</p>
+                        <%= product.size %>
+                          </p>
+                          <% }); %>
+                  </td>
+                  <td>
+                    <%= row.status %>
+                  </td>
+                  <td>
+                    <%= row.customer_id.address %>
+                  </td>
+                  <td>
+                    <button type="button" class="btn w btn-success text-dark">
+                      <a class="text-decoration-none text-dark"
+                        href="/list-order/update/<%= row._id %>?status=Success">Success</a>
+                    </button>
+                    <button type="button" class="w btn btn-danger text-dark">
+                      <a class="text-decoration-none text-dark"
+                        href="/list-order/delete/<%= row._id %>?status=Cancel">Cancel</a>
+                    </button>
+                  </td>
+                </tr>
+                <% }); %>
+          </tbody>
+        </table>
       </div>
-      <table class="table table-bordered border-secondary">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Customer</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Time</th>
-            <th scope="col">Product</th>
-            <th scope="col">Status</th>
-            <th scope="col">Address</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% function formatDateTime(dateTime) { const formattedDateTime = new
-          Date(dateTime).toLocaleString('en-US', { year: 'numeric', month:
-          'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second:
-          'numeric' }); return formattedDateTime; } %> <%
-          order.forEach(function(order, index) { %>
-          <tr>
-            <th><%= index %></th>
-            <td class="col"> <button type="button" class="btn btn-info"><%= order.customer_id.name %></button></td>
-            <td class="col"><%= order.customer_id.phone %></td>
-            <td><%= formatDateTime(order.order_date) %></td>
-            <td>
-                <% order.product_orders.forEach(function(product, index) { %>
-                    <p class="d-flex">
-                       <button type="button" class="btn btn-info"><%= product.product_id.name %></button>
-                      <p class="text-in-table">quantity :</p> <%= product.quantity %> 
-                      <p class="text-in-table">size :</p> <%= product.size %>
-                    </p>
-                  <% }); %>
-            </td>
-            <td> <button type="button" class="btn btn-secondary"><%= order.status %></button></td>
-            <td> <%= order.customer_id.address %></td>
-            <td >
-              <button type="button" class="btn btn-success text-dark">
-                <a  class="text-decoration-none text-dark" href="/list-order/update/<%= order._id %>?status=Success">Success</a>
-              </button>
-              <button type="button" class="btn btn-danger text-dark">
-                <a class="text-decoration-none text-dark" href="/list-order/delete/<%= order._id %>?status=Cancel">Cancel</a>
-              </button>
-            </td>
-          </tr>
-          <% }); %>
-        </tbody>
-      </table>
     </div>
-    <script src="/js/home.js"></script>
-  </body>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.bundle.min.js"
+    integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.datatables.net/v/dt/dt-1.13.10/datatables.min.js"></script>
+  <script src="/js/home.js"></script>
+</body>
+
 </html>
