@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom"
 import { useSelector } from 'react-redux';
 import { selectCart } from '../../redux/Slice/cartSlice';
 import { selectLike } from '../../redux/Slice/likeSlice';
+import lodash from "lodash"
+import SreachProduct from '../API/SreachProduct';
 
 const Header = () => {
+    const [query, setQuery] = useState("");
+
+    const handleUpdate = lodash.debounce((e) => {
+        setQuery(e.target.value)
+    }, 200);
 
     const productCart = useSelector(selectCart);
-    const numberProductCart = (productCart.cartItems.length > 0) ? productCart.cartItems.length : 0
+    const numberProductCart = productCart.cartItems.length;
+
     const productLike = useSelector(selectLike);
-    const numberProductLike = (productLike.likeProductItems.length > 0) ? productLike.likeProductItems.length : 0
+    const numberProductLike = productLike.likeProductItems.length;
 
     return (
         <header className="sticky top-0 z-50">
@@ -22,15 +30,15 @@ const Header = () => {
                     <Link to={"/products-football"} className=' sm:hidden text-white w-[100px] text-center leading-fullheader hover:bg-[#F5F5F5] hover:scale-105 hover:transition-all duration-500 hover:text-black cursor-pointer'>Men</Link>
                     <Link to={"/products-football"} className=' sm:hidden text-white w-[100px] text-center leading-fullheader hover:bg-[#F5F5F5] hover:scale-105 hover:transition-all duration-500 hover:text-black cursor-pointer'>Women</Link>
                 </div>
-                <div className='flex items-center justify-center p-5 sm:hidden'>
+                <div className='relative flex items-center justify-center p-5 sm:hidden'>
                     <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" className='m-3 cursor-pointer'>
                         <path fillRule="evenodd" clipRule="evenodd" d="M7.05405 15.1081C3.15821 15.1081 -1.49012e-08 11.9499 -1.49012e-08 8.05405C-1.49012e-08 4.15821 3.15821 1 7.05405 1C10.9499 1 14.1081 4.15821 14.1081 8.05405C14.1081 9.73914 13.5173 11.2862 12.5314 12.4994L17.7863 17.7543C18.0712 18.0392 18.0712 18.5013 17.7863 18.7863C17.5013 19.0712 17.0393 19.0712 16.7543 18.7863L11.4994 13.5314C10.2862 14.5173 8.73914 15.1081 7.05405 15.1081ZM7.05405 13.6486C10.1439 13.6486 12.6486 11.1439 12.6486 8.05405C12.6486 4.96424 10.1439 2.45946 7.05405 2.45946C3.96424 2.45946 1.45946 4.96424 1.45946 8.05405C1.45946 11.1439 3.96424 13.6486 7.05405 13.6486Z" fill="#BEBEBE" />
                         <path d="M12.5314 12.4994L12.3546 12.6762L12.1952 12.5168L12.3374 12.3418L12.5314 12.4994ZM17.7863 17.7543L17.6095 17.931L17.6095 17.931L17.7863 17.7543ZM17.7863 18.7863L17.963 18.963L17.963 18.963L17.7863 18.7863ZM16.7543 18.7863L16.5775 18.963L16.5775 18.963L16.7543 18.7863ZM11.4994 13.5314L11.3418 13.3374L11.5168 13.1952L11.6762 13.3546L11.4994 13.5314ZM0.25 8.05405C0.25 11.8118 3.29628 14.8581 7.05405 14.8581V15.3581C3.02014 15.3581 -0.25 12.088 -0.25 8.05405H0.25ZM7.05405 1.25C3.29628 1.25 0.25 4.29628 0.25 8.05405H-0.25C-0.25 4.02014 3.02014 0.75 7.05405 0.75V1.25ZM13.8581 8.05405C13.8581 4.29628 10.8118 1.25 7.05405 1.25V0.75C11.088 0.75 14.3581 4.02014 14.3581 8.05405H13.8581ZM12.3374 12.3418C13.2883 11.1715 13.8581 9.67965 13.8581 8.05405H14.3581C14.3581 9.79862 13.7462 11.4009 12.7254 12.6571L12.3374 12.3418ZM12.7082 12.3227L17.963 17.5775L17.6095 17.931L12.3546 12.6762L12.7082 12.3227ZM17.963 17.5775C18.3457 17.9601 18.3457 18.5804 17.963 18.963L17.6095 18.6095C17.7968 18.4221 17.7968 18.1184 17.6095 17.931L17.963 17.5775ZM17.963 18.963C17.5804 19.3457 16.9601 19.3457 16.5775 18.963L16.9311 18.6095C17.1184 18.7968 17.4221 18.7968 17.6095 18.6095L17.963 18.963ZM16.5775 18.963L11.3227 13.7082L11.6762 13.3546L16.9311 18.6095L16.5775 18.963ZM7.05405 14.8581C8.67965 14.8581 10.1715 14.2883 11.3418 13.3374L11.6571 13.7254C10.4009 14.7462 8.79862 15.3581 7.05405 15.3581V14.8581ZM12.8986 8.05405C12.8986 11.2819 10.2819 13.8986 7.05405 13.8986V13.3986C10.0058 13.3986 12.3986 11.0058 12.3986 8.05405H12.8986ZM7.05405 2.20946C10.2819 2.20946 12.8986 4.82617 12.8986 8.05405H12.3986C12.3986 5.10232 10.0058 2.70946 7.05405 2.70946V2.20946ZM1.20946 8.05405C1.20946 4.82617 3.82617 2.20946 7.05405 2.20946V2.70946C4.10232 2.70946 1.70946 5.10232 1.70946 8.05405H1.20946ZM7.05405 13.8986C3.82617 13.8986 1.20946 11.2819 1.20946 8.05405H1.70946C1.70946 11.0058 4.10232 13.3986 7.05405 13.3986V13.8986Z" fill="#BEBEBE" />
                     </svg>
-                    <input type="text"
-                        placeholder='What are you looking for?'
-                        className='text-white bg-transparent focus:outline-none'
-                    />
+                    <input type="text" placeholder='What are you looking for?'
+                        className='w-[200px]  h-[30px] text-white bg-transparent focus:outline-none focus:ring-0'
+                        onChange={handleUpdate} />
+                    {query && <SreachProduct name={query} />}
                 </div>
                 <div className='flex items-center justify-center '>
                     <Link to={"/cart"} className="relative p-3 cursor-pointer cart">

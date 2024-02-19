@@ -91,23 +91,28 @@ module.exports = {
         }
     },
     getProductServices: async (data) => {
-        const page = data.page
-        const { filter, limit, population } = aqp(data)
-        // console.log("population >>>",population)
-        // console.log("filter >>>",filter)
-        // console.log("limit >>>",limit)
-        delete filter.page
-        let offset = (page - 1) * limit
+        const page = data.page;
+        const { filter, limit, population } = aqp(data);
+        const { name } = filter;
+        delete filter.page;
+        delete filter.name;
+        let query = Product.find(filter);
 
-        result = await Product
-            .find(filter)
+        if (name) {
+            query = query.where('name', new RegExp(name, 'i'));
+        }
+
+        let offset = (page - 1) * limit;
+
+        const result = await query
             .populate(population)
             .skip(offset)
             .limit(limit)
             .exec();
 
-        return result
+        return result;
     },
+
     postSingleImageServices: async (data) => {
         //__dirname auto to file root
         let uploadPath = path.resolve(__dirname, "../public/image") //C: ...../public/image

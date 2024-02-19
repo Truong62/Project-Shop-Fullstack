@@ -7,6 +7,12 @@ import Breadcrumb from '../common/Breadcrumb';
 import Dropdown from '../common/Dropdown';
 
 const ContentProductPage = () => {
+    const [currentPath, setCurrentPath] = useState(['/']);
+
+    const handleBreadcrumbClick = (index) => {
+        setCurrentPath(currentPath.slice(0, index + 1));
+    };
+
     const GenderArr = ["Male", "Female",];
     const PriceRangeArr = ["Below $50", "Above $50",];
     const SizeArr = ["XS (UK 4-6)", "S (UK 8-10)", "M (UK 12-14)", "L (UK 12-14)",];
@@ -38,7 +44,7 @@ const ContentProductPage = () => {
         <FormContainer className='pt-10 sm:pt-5'>
             <div className='flex justify-between sm:block'>
                 <div>
-                    <Breadcrumb></Breadcrumb>
+                    <Breadcrumb items={currentPath.map((path, index) => ({ text: path, onClick: () => handleBreadcrumbClick(index) }))}></Breadcrumb>
                     <h1 className='text-3xl font-bold sm:text-2xl sm:mb-3 sm:hidden'>Women's Jerseys</h1>
                 </div>
                 <div className='relative items-center justify-between sm:flex' ref={RefDrop}>
